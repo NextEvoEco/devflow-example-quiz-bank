@@ -11,19 +11,21 @@
       <aside class="sidebar">
         <div class="brand">Quiz Bank</div>
         <nav class="nav">
-          <button class="nav-item is-active" type="button">Question Bank</button>
-          <button class="nav-item is-disabled" type="button" disabled>Quiz Builder</button>
+          <button class="nav-item is-active" type="button" data-nav-target="questions">
+            Question Bank
+          </button>
+          <button class="nav-item" type="button" data-nav-target="quizList">Quiz Builder</button>
           <button class="nav-item is-disabled" type="button" disabled>Online Exam</button>
         </nav>
       </aside>
 
       <div class="main">
         <header class="topbar">
-          <h1>Questions</h1>
+          <h1 id="topbar-title">Questions</h1>
         </header>
 
         <main class="content">
-          <section class="question-bank-page">
+          <section id="page-questions" class="page-view question-bank-page">
             <div class="page-header">
               <div class="page-header-left">
                 <h2 class="page-title">Questions</h2>
@@ -70,6 +72,92 @@
                   Add Question
                 </button>
               </div>
+            </div>
+          </section>
+
+          <section id="page-quiz-list" class="page-view quiz-list-page" hidden>
+            <div class="page-header">
+              <div class="page-header-left">
+                <h2 class="page-title">Quizzes</h2>
+              </div>
+              <button id="create-quiz-btn" class="btn btn-primary" type="button">
+                New Quiz
+              </button>
+            </div>
+
+            <div id="quiz-list-status" class="list-status" hidden>Loading quizzes...</div>
+            <div id="quiz-list-error" class="list-error" hidden></div>
+
+            <div id="quiz-grid" class="quiz-grid" hidden></div>
+
+            <div id="quiz-empty-state" class="empty-state" hidden>
+              <div class="empty-state-icon" aria-hidden="true">Q</div>
+              <h3>No quizzes yet</h3>
+              <p>Create your first quiz from the Question Bank.</p>
+              <button id="quiz-empty-create-btn" class="btn btn-primary" type="button">
+                Create Quiz
+              </button>
+            </div>
+          </section>
+
+          <section id="page-quiz-builder" class="page-view quiz-builder-page" hidden>
+            <button id="quiz-builder-back-btn" class="text-link" type="button">
+              ← Back to Quizzes
+            </button>
+
+            <div class="page-header">
+              <div class="page-header-left">
+                <h2 id="quiz-builder-title" class="page-title">New Quiz</h2>
+              </div>
+            </div>
+
+            <div id="quiz-builder-status" class="list-status" hidden>Loading quiz builder...</div>
+            <div id="quiz-builder-error" class="list-error" hidden></div>
+
+            <div class="builder-form">
+              <div class="builder-card">
+                <label class="form-field" for="quiz-name-input">
+                  <span>Quiz name</span>
+                  <input id="quiz-name-input" type="text" placeholder="Enter quiz name" />
+                </label>
+              </div>
+
+              <div class="builder-panels">
+                <section class="builder-panel">
+                  <div class="builder-panel-header">
+                    <h3>Selected Questions</h3>
+                    <span id="selected-question-count" class="count-badge">0</span>
+                  </div>
+                  <div id="selected-questions-list" class="builder-question-list"></div>
+                  <p id="selected-questions-empty" class="builder-empty-message">
+                    No questions selected.
+                  </p>
+                </section>
+
+                <section class="builder-panel">
+                  <div class="builder-panel-header">
+                    <h3>Add Questions</h3>
+                  </div>
+                  <div id="available-questions-list" class="builder-question-list"></div>
+                  <p id="available-questions-empty" class="builder-empty-message" hidden>
+                    All questions added or no questions available.
+                  </p>
+                </section>
+              </div>
+
+              <p id="quiz-builder-form-error" class="form-error" hidden></p>
+
+              <footer class="builder-footer">
+                <button id="quiz-builder-cancel-btn" class="btn btn-secondary" type="button">
+                  Cancel
+                </button>
+                <button id="quiz-builder-preview-btn" class="btn btn-secondary" type="button">
+                  Preview
+                </button>
+                <button id="quiz-builder-save-btn" class="btn btn-primary" type="button">
+                  Save Quiz
+                </button>
+              </footer>
             </div>
           </section>
         </main>
@@ -156,6 +244,38 @@
       </div>
     </div>
 
+    <div id="quiz-delete-modal" class="modal-overlay" hidden>
+      <div class="modal-dialog confirm-dialog" role="dialog" aria-modal="true" aria-labelledby="quiz-delete-modal-title">
+        <div class="confirm-icon" aria-hidden="true">!</div>
+        <h2 id="quiz-delete-modal-title">Delete Quiz</h2>
+        <p>This quiz will be removed. Questions in the Question Bank will not be affected.</p>
+        <p id="quiz-delete-form-error" class="form-error" hidden></p>
+        <footer class="modal-footer modal-footer-centered">
+          <button id="quiz-delete-cancel-btn" class="btn btn-secondary" type="button">Cancel</button>
+          <button id="quiz-delete-confirm-btn" class="btn btn-danger-solid" type="button">Delete</button>
+        </footer>
+      </div>
+    </div>
+
+    <div id="quiz-preview-modal" class="modal-overlay" hidden>
+      <div class="modal-dialog preview-dialog" role="dialog" aria-modal="true" aria-labelledby="quiz-preview-modal-title">
+        <header class="modal-header">
+          <h2 id="quiz-preview-modal-title">Quiz Preview</h2>
+          <button id="quiz-preview-close-btn" class="modal-close" type="button" aria-label="Close preview">
+            ×
+          </button>
+        </header>
+        <div id="quiz-preview-content" class="modal-body preview-body"></div>
+        <footer class="modal-footer">
+          <button id="quiz-preview-done-btn" class="btn btn-primary" type="button">Close</button>
+        </footer>
+      </div>
+    </div>
+
+    <script src="/js/navigation.js"></script>
     <script src="/js/app.js"></script>
+    <script src="/js/quiz-list.js"></script>
+    <script src="/js/quiz-preview.js"></script>
+    <script src="/js/quiz-builder.js"></script>
   </body>
 </html>

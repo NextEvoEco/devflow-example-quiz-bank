@@ -40,12 +40,40 @@ Add new entries at the top using this structure:
 
 ## Entries
 
+## 2026-06-28 - Quiz Builder V1 Release Verification
+
+- Type: handoff
+- Scope: release
+- Detail: Run `py -m pytest tests/ -v` and follow `docs/o02-verification.md` before demonstrating Quiz Builder V1. All `o02/t01` through `o02/t06` tasks are complete. Quiz Builder nav is enabled; Online Exam remains disabled.
+- Source: `o02/t06` implementation and verification
+
+## 2026-06-28 - Quiz Builder Hash Init
+
+- Type: caveat
+- Scope: frontend navigation
+- Detail: `quiz-builder.js` must load builder data on init when the URL hash is `#quizCreate` or `#quizCreate/<id>`; otherwise a direct hash load before module init can leave the builder panels empty.
+- Source: `o02/t06` manual verification
+
 ## 2026-06-28 - Manual Geography Demo Fixture
 
 - Type: handoff
 - Scope: demo content
 - Detail: The app still starts with an empty Question Bank by default. The file `fixtures/world-geography-basic-50.md` contains about 50 English world geography questions prepared for manual input and demo use; it is not auto-imported or preloaded.
 - Source: repository fixture creation and current V1 scope
+
+## 2026-06-28 - Quiz API Endpoints
+
+- Type: handoff
+- Scope: backend API
+- Detail: Quiz routes live under `/api/quizzes`. Create/update payloads use `name` and ordered `questionIds`; detail responses include full `questions` objects for preview support.
+- Source: `o02/t02` implementation and verification
+
+## 2026-06-28 - Quiz Schema Migration v3
+
+- Type: handoff
+- Scope: database
+- Detail: Migration v3 adds `quizzes` and `quiz_questions` tables. `quiz_questions` stores ordered question references via `position` and foreign keys to `quizzes.id` and `questions.id`.
+- Source: `o02/t01` implementation and verification
 
 ## 2026-06-28 - V1 Release Verification
 

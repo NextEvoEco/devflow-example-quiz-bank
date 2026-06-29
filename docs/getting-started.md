@@ -231,6 +231,7 @@ After the V1 foundation task is complete, use:
 
 - [docs/app-startup.md](docs/app-startup.md) for installation and startup
 - [docs/v1-verification.md](docs/v1-verification.md) for the V1 release checklist
+- [docs/o02-verification.md](docs/o02-verification.md) for the Quiz Builder V1 release checklist
 
 ---
 

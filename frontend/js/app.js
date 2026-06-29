@@ -377,4 +377,6 @@ function initQuestionBankPage() {
   loadQuestions();
 }
 
+window.refreshQuestionBank = loadQuestions;
+
 document.addEventListener("DOMContentLoaded", initQuestionBankPage);

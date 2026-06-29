@@ -130,7 +130,6 @@ def test_v1_validation_rules_are_enforced(client) -> None:
 @pytest.mark.parametrize(
     "path",
     [
-        "/api/quizzes",
         "/api/exams",
         "/quizList",
         "/examList",

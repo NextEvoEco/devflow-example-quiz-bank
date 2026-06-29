@@ -1,10 +1,10 @@
-# DevFlow Example — Quiz Bank
+# DevFlow Example - Quiz Bank
 
 > A reference implementation demonstrating how DevFlow structures AI-assisted software development through a real project.
 
 This repository is the official reference implementation of **DevFlow**.
 
-Rather than explaining the workflow through abstract concepts, this project demonstrates how DevFlow artifacts evolve while building a complete Quiz Bank application—from the initial idea to a working product.
+Rather than explaining the workflow through abstract concepts, this project demonstrates how DevFlow artifacts evolve while building a complete Quiz Bank application from the initial idea to a working product.
 
 Every development decision is preserved as part of the project itself, allowing both humans and AI to continue development across sessions without relying on conversation history.
 
@@ -18,18 +18,18 @@ Instead of treating AI conversations as project memory, DevFlow stores project s
 
 By following this example, you can see:
 
-* How a project starts from an initial intent.
-* How requirements are clarified through interviews.
-* How objectives become executable tasks.
-* How execution progress is tracked.
-* How project context remains independent from conversations.
-* How development decisions are preserved as evidence.
+* How a project starts from an initial intent
+* How requirements are clarified through interviews
+* How objectives become executable tasks
+* How execution progress is tracked
+* How project context remains independent from conversations
+* How development decisions are preserved as evidence
 
 ---
 
 # What This Repository Demonstrates
 
-This project builds a simple Quiz Bank application.
+This project builds a simple local Quiz Bank application.
 
 The application itself is intentionally small.
 
@@ -37,11 +37,38 @@ The primary purpose is to demonstrate the DevFlow workflow rather than applicati
 
 Current development roadmap:
 
-* V1 — Question Bank
-* V2 — Quiz Builder
-* V3 — Online Exam
+* V1 - Question Bank
+* V2 - Quiz Builder
+* V3 - Online Exam
 
 Each version introduces additional DevFlow artifacts while keeping the application understandable.
+
+---
+
+# Current Status
+
+Current implemented scope:
+
+* V1 - Question Bank
+* V2 - Quiz Builder
+
+Planned next scope:
+
+* V3 - Online Exam
+
+The current application supports:
+
+* Question Bank CRUD
+* SQLite persistence
+* Quiz Builder CRUD
+* Selecting existing questions into quizzes
+* Manual question reordering inside quizzes
+* Quiz preview before save
+
+The current application does not yet support:
+
+* Online Exam runtime
+* Automatic sample-data import on startup
 
 ---
 
@@ -65,12 +92,93 @@ Each version introduces additional DevFlow artifacts while keeping the applicati
     skills/         AI skill definitions
     templates/      Artifact templates
 
-docs/
-    Supporting documentation
+backend/
+    Flask application, routes, validation, repositories, and SQLite bootstrap
 
-src/
-    Application source code
+frontend/
+    Plain HTML, CSS, and JavaScript UI
+
+data/
+    Local SQLite database files
+
+docs/
+    Supporting documentation and verification guides
+
+example_data/
+    Manual demo data for Question Bank and Quiz Builder testing
+
+tests/
+    Automated test suite
 ```
+
+---
+
+# Example Data
+
+The app starts with an empty Question Bank by default.
+
+No sample questions or quizzes are auto-imported at startup.
+
+Use the files in `example_data/` for manual testing:
+
+* `world-geography-basic-50.md` - question-bank sample data for manual entry
+* `quiz-builder-world-geography-3.md` - 3-question quiz sample
+* `quiz-builder-world-geography-5.md` - 5-question quiz sample
+* `quiz-builder-world-geography-10.md` - 10-question quiz sample
+
+The quiz sample files describe:
+
+* quiz name
+* question count
+* which existing Question Bank items to select
+* the intended question order in Quiz Builder
+
+---
+
+# Getting Started
+
+## Requirements
+
+* Python 3.13 or compatible local Python environment
+* `pip` for dependency installation
+
+## Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+## Run The App
+
+Start the application from the repository root:
+
+```bash
+py -m backend
+```
+
+Default local URL:
+
+```text
+http://127.0.0.1:5000
+```
+
+On first run, the app creates the SQLite database automatically at `data/quiz_bank.db`.
+
+---
+
+# Testing
+
+Run the automated test suite from the repository root:
+
+```bash
+py -m pytest tests/ -v
+```
+
+Additional verification guides:
+
+* [docs/v1-verification.md](docs/v1-verification.md) for Question Bank V1 verification
+* [docs/o02-verification.md](docs/o02-verification.md) for Quiz Builder V1 verification
+* [docs/getting-started.md](docs/getting-started.md) for DevFlow reading and startup guidance
 
 ---
 
@@ -95,13 +203,13 @@ without reconstructing project context from scratch.
 
 The recommended reading order is:
 
-1. `.devflow/status.md` — current execution state
-2. `.devflow/intent/` — project intent artifacts
-3. `.devflow/interview/` — requirement clarification records
-4. `.devflow/objective/` — confirmed objectives
-5. `.devflow/tasks/` — individual executable tasks
-6. `.devflow/evidence/` — development decisions and outcomes
-7. `.devflow/context/` — project environment reference
+1. `.devflow/status.md` - current execution state
+2. `.devflow/intent/` - project intent artifacts
+3. `.devflow/interview/` - requirement clarification records
+4. `.devflow/objective/` - confirmed objectives
+5. `.devflow/tasks/` - individual executable tasks
+6. `.devflow/evidence/` - development decisions and outcomes
+7. `.devflow/context/` - project environment reference
 
 Following this order shows how an idea gradually becomes executable software.
 
@@ -117,22 +225,9 @@ The DevFlow framework itself is maintained separately.
 
 **DevFlow Framework**
 
-https://github.com/NextEvoEco/devflow
+[https://github.com/NextEvoEco/devflow](https://github.com/NextEvoEco/devflow)
 
 This repository focuses on demonstrating how DevFlow is applied in practice.
-
----
-
-# Status
-
-Current Version
-
-* V1 — Question Bank (In Progress)
-
-Planned Versions
-
-* V2 — Quiz Builder
-* V3 — Online Exam
 
 ---
 

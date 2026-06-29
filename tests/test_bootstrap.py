@@ -33,6 +33,9 @@ def test_initialize_database_creates_schema(temp_db_path: Path) -> None:
         }
         assert 1 in versions
         assert 2 in versions
+        assert 3 in versions
+        assert "quizzes" in tables
+        assert "quiz_questions" in tables
 
 
 def test_create_app_initializes_database_on_first_run(
