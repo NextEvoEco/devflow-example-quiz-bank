@@ -9,15 +9,15 @@ Keep it lightweight and current.
 
 ## Current State
 
-| Field             | Value |
-| ----------------- | ----- |
-| Current Intent    |       |
-| Current Objective |       |
-| Current Task      |       |
-| Current Role      |       |
-| Progress          |       |
-| Resume Point      |       |
-| Next Action       |       |
+| Field             | Value                                                    |
+| ----------------- | -------------------------------------------------------- |
+| Current Intent    | i01-question-bank                                        |
+| Current Objective | o01-question-bank-v1                                     |
+| Current Task      | none                                                     |
+| Current Role      | developer                                                |
+| Progress          | o01-question-bank-v1 complete                            |
+| Resume Point      | start a new intent/objective iteration or demonstrate V1 |
+| Next Action       | review release docs or begin the next product iteration  |
 
 ---
 
@@ -25,12 +25,12 @@ Keep it lightweight and current.
 
 Fill paths only when the corresponding artifact exists.
 
-| Artifact         | Path |
-| ---------------- | ---- |
-| Intent           |      |
-| Objective        |      |
-| Task             |      |
-| Related Evidence |      |
+| Artifact         | Path                                                               |
+| ---------------- | ------------------------------------------------------------------ |
+| Intent           | `.devflow/intent/i01-question-bank.md`                             |
+| Objective        | `.devflow/objective/o01-question-bank-v1.md`                       |
+| Task             |                                                                    |
+| Related Evidence | `.devflow/evidence/o01-e06-add-release-checks-and-verification.md` |
 
 ---
 

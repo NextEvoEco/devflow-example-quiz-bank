@@ -225,7 +225,16 @@ Use this checklist after download:
 
 ---
 
-## 11. Success Condition
+## 11. Run The Quiz Bank Application
+
+After the V1 foundation task is complete, use:
+
+- [docs/app-startup.md](docs/app-startup.md) for installation and startup
+- [docs/v1-verification.md](docs/v1-verification.md) for the V1 release checklist
+
+---
+
+## 12. Success Condition
 
 You are using DevFlow correctly when:
 

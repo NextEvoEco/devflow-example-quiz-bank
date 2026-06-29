@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz Bank</title>
+    <link rel="stylesheet" href="/css/app.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">Quiz Bank</div>
+        <nav class="nav">
+          <button class="nav-item is-active" type="button">Question Bank</button>
+          <button class="nav-item is-disabled" type="button" disabled>Quiz Builder</button>
+          <button class="nav-item is-disabled" type="button" disabled>Online Exam</button>
+        </nav>
+      </aside>
+
+      <div class="main">
+        <header class="topbar">
+          <h1>Questions</h1>
+        </header>
+
+        <main class="content">
+          <section class="question-bank-page">
+            <div class="page-header">
+              <div class="page-header-left">
+                <h2 class="page-title">Questions</h2>
+                <span id="question-count" class="count-badge">0</span>
+              </div>
+              <button id="add-question-btn" class="btn btn-primary" type="button">
+                Add Question
+              </button>
+            </div>
+
+            <label class="search-box" for="search-input">
+              <span class="search-icon" aria-hidden="true">⌕</span>
+              <input
+                id="search-input"
+                class="search-input"
+                type="search"
+                placeholder="Search questions..."
+                autocomplete="off"
+              />
+            </label>
+
+            <div id="question-list-status" class="list-status" hidden>Loading questions...</div>
+            <div id="question-list-error" class="list-error" hidden></div>
+
+            <div id="question-list-container" class="question-list-container">
+              <table id="question-table" class="question-table" hidden>
+                <thead>
+                  <tr>
+                    <th scope="col">Question</th>
+                    <th scope="col" class="col-difficulty">Difficulty</th>
+                    <th scope="col" class="col-actions">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="question-table-body"></tbody>
+              </table>
+
+              <div id="empty-state" class="empty-state" hidden>
+                <div class="empty-state-icon" aria-hidden="true">?</div>
+                <h3>No questions found</h3>
+                <p id="empty-state-message">
+                  Your question bank is empty. Add a question to get started.
+                </p>
+                <button id="empty-add-question-btn" class="btn btn-primary" type="button">
+                  Add Question
+                </button>
+              </div>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <div id="editor-modal" class="modal-overlay" hidden>
+      <div class="modal-dialog editor-dialog" role="dialog" aria-modal="true" aria-labelledby="editor-modal-title">
+        <header class="modal-header">
+          <h2 id="editor-modal-title">Add Question</h2>
+          <button id="editor-close-btn" class="modal-close" type="button" aria-label="Close editor">
+            ×
+          </button>
+        </header>
+
+        <form id="question-form" class="modal-body">
+          <p id="editor-form-error" class="form-error" hidden></p>
+
+          <label class="form-field">
+            <span>Question text</span>
+            <textarea id="field-question" name="question" rows="3" required></textarea>
+          </label>
+
+          <label class="form-field">
+            <span>Option A</span>
+            <input id="field-a" name="a" type="text" required />
+          </label>
+
+          <label class="form-field">
+            <span>Option B</span>
+            <input id="field-b" name="b" type="text" required />
+          </label>
+
+          <label class="form-field">
+            <span>Option C</span>
+            <input id="field-c" name="c" type="text" required />
+          </label>
+
+          <label class="form-field">
+            <span>Option D</span>
+            <input id="field-d" name="d" type="text" required />
+          </label>
+
+          <label class="form-field">
+            <span>Correct Answer</span>
+            <select id="field-correct" name="correct" required>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="D">D</option>
+            </select>
+          </label>
+
+          <label class="form-field">
+            <span>Difficulty</span>
+            <select id="field-difficulty" name="difficulty">
+              <option value="Easy">Easy</option>
+              <option value="Medium" selected>Medium</option>
+              <option value="Hard">Hard</option>
+            </select>
+          </label>
+        </form>
+
+        <footer class="modal-footer">
+          <button id="editor-cancel-btn" class="btn btn-secondary" type="button">Cancel</button>
+          <button id="editor-save-btn" class="btn btn-primary" type="button">Save Question</button>
+        </footer>
+      </div>
+    </div>
+
+    <div id="delete-modal" class="modal-overlay" hidden>
+      <div class="modal-dialog confirm-dialog" role="dialog" aria-modal="true" aria-labelledby="delete-modal-title">
+        <div class="confirm-icon" aria-hidden="true">!</div>
+        <h2 id="delete-modal-title">Delete Question</h2>
+        <p>
+          This question will be removed from the question bank. If it appears in any quiz,
+          it will also be removed from those quizzes.
+        </p>
+        <p id="delete-form-error" class="form-error" hidden></p>
+        <footer class="modal-footer modal-footer-centered">
+          <button id="delete-cancel-btn" class="btn btn-secondary" type="button">Cancel</button>
+          <button id="delete-confirm-btn" class="btn btn-danger-solid" type="button">Delete</button>
+        </footer>
+      </div>
+    </div>
+
+    <script src="/js/app.js"></script>
+  </body>
+</html>
