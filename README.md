@@ -48,30 +48,22 @@ Each version introduces additional DevFlow artifacts while keeping the applicati
 # Repository Structure
 
 ```text
-intent/
-    Project intent for each iteration
-
-interview/
-    Requirement clarification records
-
-objective/
-    Version objectives
-
-tasks/
-    Individual executable tasks
-
-status/
-    Execution progress
-
-context/
-    Project environment
-    - architecture
-    - technology stack
-    - conventions
-    - dependencies
-
-evidence/
-    Development evidence and decision records
+.devflow/
+    intent/         Project intent for each iteration
+    interview/      Requirement clarification records
+    objective/      Version objectives
+    tasks/          Individual executable tasks
+    evidence/       Development evidence and decision records
+    context/        Project environment
+                        - architecture
+                        - technology stack
+                        - conventions
+                        - dependencies
+    status.md       Execution progress
+    memory.md       Durable cross-session knowledge
+    roles/          AI role definitions
+    skills/         AI skill definitions
+    templates/      Artifact templates
 
 docs/
     Supporting documentation
@@ -103,15 +95,17 @@ without reconstructing project context from scratch.
 
 The recommended reading order is:
 
-1. Intent
-2. Interview
-3. Objective
-4. Task
-5. Status
-6. Context
-7. Evidence
+1. `.devflow/status.md` — current execution state
+2. `.devflow/intent/` — project intent artifacts
+3. `.devflow/interview/` — requirement clarification records
+4. `.devflow/objective/` — confirmed objectives
+5. `.devflow/tasks/` — individual executable tasks
+6. `.devflow/evidence/` — development decisions and outcomes
+7. `.devflow/context/` — project environment reference
 
 Following this order shows how an idea gradually becomes executable software.
+
+If you are new to DevFlow and want to apply it to your own project, see [docs/getting-started.md](docs/getting-started.md).
 
 ---
 
