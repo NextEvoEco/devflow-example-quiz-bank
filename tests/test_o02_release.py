@@ -144,10 +144,12 @@ def test_o02_frontend_shell_includes_quiz_builder_modules(client) -> None:
         assert asset_response.status_code == 200
 
 
-def test_o02_online_exam_remains_out_of_scope(client) -> None:
+def test_o02_online_exam_nav_is_enabled(client) -> None:
     response = client.get("/api/exams")
     assert response.status_code == 404
 
     html = client.get("/").get_data(as_text=True)
     assert "Online Exam" in html
-    assert "is-disabled" in html
+    assert 'data-nav-target="examList"' in html
+    assert 'id="page-exam-list"' in html
+    assert 'disabled>Online Exam</button>' not in html.replace("\n", " ")

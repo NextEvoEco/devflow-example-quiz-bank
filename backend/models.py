@@ -71,3 +71,47 @@ class QuizDetail:
             "questionIds": self.question_ids,
             "questions": [question.to_dict() for question in self.questions],
         }
+
+
+@dataclass
+class ExamAttempt:
+    id: int
+    quiz_id: int
+    score: int | None
+    total: int | None
+    started_at: str
+    submitted_at: str | None
+
+    @classmethod
+    def from_row(cls, row: Any) -> "ExamAttempt":
+        return cls(
+            id=row["id"],
+            quiz_id=row["quiz_id"],
+            score=row["score"],
+            total=row["total"],
+            started_at=row["started_at"],
+            submitted_at=row["submitted_at"],
+        )
+
+
+@dataclass
+class ExamAnswer:
+    id: int
+    attempt_id: int
+    question_id: int
+    selected_option: str | None
+
+    @classmethod
+    def from_row(cls, row: Any) -> "ExamAnswer":
+        return cls(
+            id=row["id"],
+            attempt_id=row["attempt_id"],
+            question_id=row["question_id"],
+            selected_option=row["selected_option"],
+        )
+
+
+@dataclass
+class ExamAttemptWithAnswers:
+    attempt: ExamAttempt
+    answers: list[ExamAnswer]

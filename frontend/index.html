@@ -15,7 +15,7 @@
             Question Bank
           </button>
           <button class="nav-item" type="button" data-nav-target="quizList">Quiz Builder</button>
-          <button class="nav-item is-disabled" type="button" disabled>Online Exam</button>
+          <button class="nav-item" type="button" data-nav-target="examList">Online Exam</button>
         </nav>
       </aside>
 
@@ -160,6 +160,107 @@
               </footer>
             </div>
           </section>
+
+          <section id="page-exam-list" class="page-view exam-list-page" hidden>
+            <div class="page-header">
+              <div class="page-header-left">
+                <h2 class="page-title">Available Exams</h2>
+              </div>
+            </div>
+
+            <div id="exam-list-status" class="list-status" hidden>Loading exams...</div>
+            <div id="exam-list-error" class="list-error" hidden></div>
+
+            <div id="exam-grid" class="exam-grid" hidden></div>
+
+            <div id="exam-empty-state" class="empty-state" hidden>
+              <div class="empty-state-icon" aria-hidden="true">E</div>
+              <h3>No exams available</h3>
+              <p>Create a quiz in Quiz Builder to make it available as an exam.</p>
+              <button id="exam-empty-create-btn" class="btn btn-primary" type="button">
+                Go to Quiz Builder
+              </button>
+            </div>
+          </section>
+
+          <section id="page-exam-taking" class="page-view exam-taking-page" hidden>
+            <div class="exam-taking-shell">
+              <header class="exam-taking-header">
+                <div class="exam-taking-header-text">
+                  <p id="exam-taking-quiz-label" class="exam-taking-quiz-label"></p>
+                  <p id="exam-taking-progress-label" class="exam-taking-progress-label"></p>
+                </div>
+                <button id="exam-exit-btn" class="btn btn-secondary btn-compact" type="button">
+                  Exit
+                </button>
+              </header>
+
+              <div class="exam-progress-track" aria-hidden="true">
+                <div id="exam-progress-fill" class="exam-progress-fill"></div>
+              </div>
+
+              <div id="exam-question-jump" class="exam-question-jump"></div>
+
+              <div id="exam-taking-status" class="list-status" hidden>Loading exam...</div>
+              <div id="exam-taking-error" class="list-error" hidden></div>
+
+              <article id="exam-question-card" class="exam-question-card" hidden>
+                <p id="exam-question-text" class="exam-question-text"></p>
+                <div id="exam-option-list" class="exam-option-list"></div>
+              </article>
+
+              <footer class="exam-taking-footer">
+                <button id="exam-prev-btn" class="btn btn-secondary" type="button">Previous</button>
+                <button id="exam-next-btn" class="btn btn-primary" type="button">Next</button>
+              </footer>
+            </div>
+          </section>
+
+          <section id="page-exam-results" class="page-view exam-results-page" hidden>
+            <div class="exam-results-shell">
+              <header class="exam-results-header">
+                <p id="exam-results-quiz-label" class="exam-results-quiz-label"></p>
+                <h2 class="exam-results-title">Exam Complete!</h2>
+              </header>
+
+              <div class="exam-results-summary">
+                <div class="exam-score-ring-wrap">
+                  <svg
+                    id="exam-score-ring"
+                    class="exam-score-ring"
+                    viewBox="0 0 120 120"
+                    aria-hidden="true"
+                  >
+                    <circle class="exam-score-ring-track" cx="60" cy="60" r="54"></circle>
+                    <circle id="exam-score-ring-progress" class="exam-score-ring-progress" cx="60" cy="60" r="54"></circle>
+                  </svg>
+                  <div class="exam-score-ring-center">
+                    <span id="exam-score-percentage" class="exam-score-percentage"></span>
+                    <span id="exam-score-fraction" class="exam-score-fraction"></span>
+                  </div>
+                </div>
+
+                <div class="exam-score-counts">
+                  <div id="exam-correct-count" class="exam-score-count exam-score-count-correct"></div>
+                  <div id="exam-incorrect-count" class="exam-score-count exam-score-count-incorrect"></div>
+                </div>
+              </div>
+
+              <section class="exam-answer-review">
+                <h3 class="exam-answer-review-title">Answer Review</h3>
+                <div id="exam-answer-review-list" class="exam-answer-review-list"></div>
+              </section>
+
+              <footer class="exam-results-footer">
+                <button id="exam-back-to-list-btn" class="btn btn-secondary" type="button">
+                  Back to Exams
+                </button>
+                <button id="exam-retry-btn" class="btn btn-primary" type="button">
+                  Retry Quiz
+                </button>
+              </footer>
+            </div>
+          </section>
         </main>
       </div>
     </div>
@@ -277,5 +378,8 @@
     <script src="/js/quiz-list.js"></script>
     <script src="/js/quiz-preview.js"></script>
     <script src="/js/quiz-builder.js"></script>
+    <script src="/js/exam-list.js"></script>
+    <script src="/js/exam-taking.js"></script>
+    <script src="/js/exam-results.js"></script>
   </body>
 </html>

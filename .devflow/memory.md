@@ -40,6 +40,48 @@ Add new entries at the top using this structure:
 
 ## Entries
 
+## 2026-06-30 - Online Exam V3 Release Verification
+
+- Type: handoff
+- Scope: release
+- Detail: Run `py -m pytest tests/ -v` and follow `docs/v3-verification.md` before demonstrating Online Exam V3. All `o03/t01` through `o03/t06` tasks are complete. Release tests live in `tests/test_v3_release.py`.
+- Source: `o03/t06` implementation and verification
+
+## 2026-06-30 - Exam Results Frontend
+
+- Type: handoff
+- Scope: frontend exam results
+- Detail: Results page reads `window.examState.submitResult` only (no extra API). `exam-results.js` renders score ring, counts, and answer review. Retry Quiz navigates to `#examTaking/{quizId}`; Back to Exams clears session and goes to `#examList`.
+- Source: `o03/t05` implementation and verification
+
+## 2026-06-30 - In-Exam Frontend Flow
+
+- Type: handoff
+- Scope: frontend exam taking
+- Detail: `exam-taking.js` creates attempts via API, saves answers on select, and submits on last question. State lives in `window.examState` (`attemptId`, `questions`, `examAnswers`, `submitResult`). Submit navigates to `#examResults` with payload in `submitResult` for t05. Leaving exam taking calls `abandonExamSession` without API cleanup.
+- Source: `o03/t04` implementation and verification
+
+## 2026-06-30 - Available Exams Frontend
+
+- Type: handoff
+- Scope: frontend navigation
+- Detail: Online Exam nav uses `#examList`. `exam-list.js` loads quizzes from `GET /api/quizzes` and Start Exam sets `window.examState.currentExamQuizId` then navigates to `#examTaking/{quizId}`. In-exam UI is still a placeholder until t04.
+- Source: `o03/t03` implementation and verification
+
+## 2026-06-30 - Exam API Endpoints
+
+- Type: handoff
+- Scope: backend API
+- Detail: Exam routes live under `/api/exams`. Create attempt with `POST /api/exams/attempts` (`quiz_id`); save answers with `PUT /api/exams/attempts/{id}/answers/{question_id}`; submit with `POST /api/exams/attempts/{id}/submit`. Submit returns score summary with per-question review fields including `question_text` and option labels. Repeat submit returns 409.
+- Source: `o03/t02` implementation and verification
+
+## 2026-06-30 - Exam Schema Migration v4
+
+- Type: handoff
+- Scope: database
+- Detail: Migration v4 adds `exam_attempts` (quiz_id, score, total, started_at, submitted_at) and `exam_answers` (attempt_id, question_id, selected_option nullable) tables. `ExamAttemptRepository` in `backend/exam_repository.py` provides create, save, submit, and read methods.
+- Source: `o03/t01` implementation and verification
+
 ## 2026-06-28 - Quiz Builder V1 Release Verification
 
 - Type: handoff

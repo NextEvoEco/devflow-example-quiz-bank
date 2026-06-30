@@ -4,8 +4,10 @@ from flask import Flask, send_from_directory
 
 from backend.config import FRONTEND_DIR
 from backend.database import initialize_database
+from backend.exam_repository import ExamAttemptRepository
 from backend.question_repository import QuestionRepository
 from backend.quiz_repository import QuizRepository
+from backend.routes.exams import exams_bp
 from backend.routes.questions import questions_bp
 from backend.routes.quizzes import quizzes_bp
 
@@ -20,9 +22,11 @@ def create_app(db_path: Path | None = None) -> Flask:
     )
     app.extensions["question_repository"] = QuestionRepository(db_path)
     app.extensions["quiz_repository"] = QuizRepository(db_path)
+    app.extensions["exam_repository"] = ExamAttemptRepository(db_path)
 
     app.register_blueprint(questions_bp)
     app.register_blueprint(quizzes_bp)
+    app.register_blueprint(exams_bp)
 
     @app.get("/")
     def index() -> object:

@@ -3,7 +3,7 @@ from pathlib import Path
 
 from backend.config import DATABASE_PATH, DATA_DIR
 
-SCHEMA_VERSION = 3
+SCHEMA_VERSION = 4
 
 _MIGRATIONS: dict[int, str] = {
     1: """
@@ -41,6 +41,29 @@ _MIGRATIONS: dict[int, str] = {
         PRIMARY KEY (quiz_id, question_id),
         UNIQUE (quiz_id, position),
         FOREIGN KEY (quiz_id) REFERENCES quizzes(id) ON DELETE CASCADE,
+        FOREIGN KEY (question_id) REFERENCES questions(id) ON DELETE CASCADE
+    );
+    """,
+    4: """
+    CREATE TABLE IF NOT EXISTS exam_attempts (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        quiz_id INTEGER NOT NULL,
+        score INTEGER,
+        total INTEGER,
+        started_at TEXT NOT NULL DEFAULT (datetime('now')),
+        submitted_at TEXT,
+        FOREIGN KEY (quiz_id) REFERENCES quizzes(id) ON DELETE CASCADE
+    );
+
+    CREATE TABLE IF NOT EXISTS exam_answers (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        attempt_id INTEGER NOT NULL,
+        question_id INTEGER NOT NULL,
+        selected_option TEXT CHECK (
+            selected_option IS NULL OR selected_option IN ('A', 'B', 'C', 'D')
+        ),
+        UNIQUE (attempt_id, question_id),
+        FOREIGN KEY (attempt_id) REFERENCES exam_attempts(id) ON DELETE CASCADE,
         FOREIGN KEY (question_id) REFERENCES questions(id) ON DELETE CASCADE
     );
     """,

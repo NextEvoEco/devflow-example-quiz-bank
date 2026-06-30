@@ -147,4 +147,4 @@ def test_v1_out_of_scope_navigation_remains_disabled(client) -> None:
 
     assert 'disabled>Quiz Builder</button>' in html.replace("\n", " ") or "Quiz Builder</button>" in html
     assert "Online Exam" in html
-    assert 'nav-item is-disabled' in html
+    assert 'data-nav-target="examList"' in html

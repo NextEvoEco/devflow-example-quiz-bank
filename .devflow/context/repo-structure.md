@@ -10,7 +10,7 @@ Fill this file when the repository contains meaningful code or supporting direct
 
 ## Current Status
 
-The repository now includes a runnable Question Bank V1 implementation plus DevFlow planning artifacts that may point ahead to later product scope.
+The repository includes a fully runnable Quiz Bank implementation covering all three planned versions: Question Bank (V1), Quiz Builder (V2), and Online Exam (V3).
 
 ### Top-Level Directories
 
@@ -33,11 +33,12 @@ Current meaningful areas:
 - `.devflow/objective/` : confirmed objective artifacts
 - `.devflow/tasks/` : executable task definitions
 - `.devflow/evidence/` : execution and verification records
-- `backend/` : Flask app factory, startup entrypoint, config, and SQLite bootstrap
+- `backend/` : Flask app factory, startup entrypoint, config, SQLite bootstrap, and route modules under `backend/routes/`
+- `backend/exam_repository.py` : exam attempt and answer repository
 - `fixtures/` : reusable question-bank content prepared for manual input or demos
-- `frontend/` : Question Bank V1 shell page and static assets
-- `tests/` : bootstrap, API, flow, and release verification tests
-- `docs/` : startup and verification instructions for the shipped V1 slice
+- `frontend/` : Question Bank, Quiz Builder, and Online Exam pages and JavaScript modules
+- `tests/` : bootstrap, API, repository, page module, and release verification tests for V1–V3
+- `docs/` : startup and verification instructions for all three shipped versions (V1, V2, V3)
 
 ### Generated Or Derived Files
 

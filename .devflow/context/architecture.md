@@ -25,25 +25,17 @@ The target product architecture is confirmed at a high level by `.devflow/contex
 
 ### Current Implementation Status
 
-The current repository implements the V1 Question Bank subset only.
+The current repository implements V1 (Question Bank), V2 (Quiz Builder), and V3 (Online Exam).
 
 Currently implemented:
 
 - local web application
 - Python backend with Flask
 - plain HTML/CSS/JavaScript frontend
-- SQLite persistence
+- SQLite persistence (questions, quizzes, quiz_questions, exam_attempts, exam_answers)
 - Question Bank list, search, add, edit, and delete flows
-
-Not yet implemented in the live repository:
-
-- Quiz Builder runtime flows
-- Online Exam runtime flows
-
-Still intentionally flexible:
-
-- exact backend package layout beyond the current bootstrap modules
-- exact frontend file split beyond the current shell structure
+- Quiz Builder create, edit, preview, and delete flows
+- Online Exam attempt, answer saving, submit, and results review flows
 
 ## Target System Overview
 
@@ -57,13 +49,15 @@ Each shipped version should remain independently runnable and usable on a local 
 
 ## Current Implementation Overview
 
-The current codebase delivers the Question Bank V1 slice of the target architecture.
+The current codebase delivers all three planned slices: Question Bank (V1), Quiz Builder (V2), and Online Exam (V3).
 
 Today:
 
-- the frontend renders the Question Bank page from static assets in `frontend/`
-- the backend exposes `/api/questions` routes
+- the frontend renders Question Bank, Quiz Builder, and Online Exam pages from static assets in `frontend/`
+- the backend exposes `/api/questions`, `/api/quizzes`, and `/api/exams` route groups
 - question persistence is handled in SQLite through `QuestionRepository`
+- quiz persistence is handled through `QuizRepository`
+- exam attempt and answer persistence is handled through `ExamAttemptRepository` in `backend/exam_repository.py`
 - the app is started locally with `py -m backend`
 
 ## Major Components
@@ -82,15 +76,16 @@ Target-forward note:
 ### Backend
 
 - Python application entrypoint for local startup
-- HTTP layer for Question Bank APIs via `/api/questions`
-- validation layer for question payloads
-- data-access layer for SQLite operations via `QuestionRepository`
-- `questions` SQLite table with migration v2 schema
+- HTTP layer for Question Bank (`/api/questions`), Quiz Builder (`/api/quizzes`), and Online Exam (`/api/exams`) APIs
+- validation layer for question and quiz payloads
+- data-access layer via `QuestionRepository`, `QuizRepository`, and `ExamAttemptRepository`
+- routes modularized under `backend/routes/`
 
 ### Database
 
-- SQLite database for persisted question records
-- schema limited to V1 Question Bank needs
+- SQLite database for persisted records
+- schema managed through versioned migrations (v1–v4)
+- tables: `questions`, `quizzes`, `quiz_questions`, `exam_attempts`, `exam_answers`
 
 ### Tests
 
@@ -137,7 +132,5 @@ When using this file during implementation:
 ## Architectural Constraints
 
 - each shipped version must remain lightweight and releaseable
-- the current shipped version is limited to Question Bank only
-- Quiz Builder and Online Exam remain target architecture areas, not current implementation scope
-- the codebase should leave room for V2 and V3 expansion without forcing a rewrite
-- UI behavior should follow `.devflow/context/ui-spec.md`
+- all three planned versions (V1 Question Bank, V2 Quiz Builder, V3 Online Exam) are now complete
+- UI behavior follows `.devflow/context/ui-spec.md`

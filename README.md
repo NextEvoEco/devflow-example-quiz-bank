@@ -51,9 +51,6 @@ Current implemented scope:
 
 * V1 - Question Bank
 * V2 - Quiz Builder
-
-Planned next scope:
-
 * V3 - Online Exam
 
 The current application supports:
@@ -64,10 +61,10 @@ The current application supports:
 * Selecting existing questions into quizzes
 * Manual question reordering inside quizzes
 * Quiz preview before save
+* Online Exam runtime (attempt, answer saving, submit, results review)
 
 The current application does not yet support:
 
-* Online Exam runtime
 * Automatic sample-data import on startup
 
 ---
@@ -177,7 +174,8 @@ py -m pytest tests/ -v
 Additional verification guides:
 
 * [docs/v1-verification.md](docs/v1-verification.md) for Question Bank V1 verification
-* [docs/o02-verification.md](docs/o02-verification.md) for Quiz Builder V1 verification
+* [docs/v2-verification.md](docs/v2-verification.md) for Quiz Builder V2 verification
+* [docs/v3-verification.md](docs/v3-verification.md) for Online Exam V3 verification
 * [docs/getting-started.md](docs/getting-started.md) for DevFlow reading and startup guidance
 
 ---
@@ -214,6 +212,64 @@ The recommended reading order is:
 Following this order shows how an idea gradually becomes executable software.
 
 If you are new to DevFlow and want to apply it to your own project, see [docs/getting-started.md](docs/getting-started.md).
+
+---
+
+# Using DevFlow
+
+This repository uses DevFlow as its development workflow.
+
+## What Is DevFlow
+
+DevFlow is a structured AI-assisted development workflow that stores project state inside the repository instead of relying on conversation history.
+
+Every development decision in this repository — from the initial intent to the final release — is preserved as a structured Markdown artifact so that any AI agent or engineer can resume work without losing context.
+
+## DevFlow Framework
+
+The DevFlow framework is maintained separately and can be applied to any project:
+
+[https://github.com/NextEvoEco/devflow](https://github.com/NextEvoEco/devflow)
+
+## How DevFlow Is Used Here
+
+This repository applies DevFlow through the `.devflow/` directory:
+
+```text
+.devflow/
+    intent/         Initial request artifacts for each iteration
+    interview/      Clarification records
+    objective/      Confirmed version objectives
+    tasks/          Individual executable task definitions
+    evidence/       Development decisions and verification records
+    context/        Project background (architecture, stack, conventions)
+    status.md       Current runtime state and resume point
+    memory.md       Durable cross-session facts
+    roles/          AI role definitions
+    skills/         AI skill definitions
+    templates/      Artifact templates
+```
+
+## Reading The DevFlow Artifacts
+
+To understand how this project was built, follow the artifact trail in order:
+
+1. `.devflow/intent/` — what was originally requested
+2. `.devflow/interview/` — how requirements were clarified
+3. `.devflow/objective/` — what was agreed to build
+4. `.devflow/tasks/` — how work was divided
+5. `.devflow/evidence/` — what was actually done and verified
+
+## Applying DevFlow To Your Own Project
+
+Clone the DevFlow starter repository and follow the setup guide:
+
+```bash
+git clone https://github.com/NextEvoEco/devflow.git
+cd devflow
+```
+
+Then read [docs/getting-started.md](docs/getting-started.md) for the setup sequence.
 
 ---
 

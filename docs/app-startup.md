@@ -1,6 +1,6 @@
 # Application Startup
 
-This guide covers running and verifying the Quiz Bank Question Bank V1 application.
+This guide covers running and verifying the Quiz Bank application.
 
 ## Prerequisites
 
@@ -29,7 +29,7 @@ On first start, the application automatically creates:
 
 - `data/` directory
 - `data/quiz_bank.db` SQLite database
-- schema migrations and the `questions` table
+- schema migrations for questions, quizzes, and exam tables
 
 No manual database setup is required. The question bank starts empty.
 
@@ -45,7 +45,12 @@ All tests should pass before demonstrating or releasing V1.
 
 1. Open `http://127.0.0.1:5000`.
 2. Confirm the Question Bank page loads.
-3. Add, search, edit, and delete a question to confirm the V1 flows work.
-4. Confirm Quiz Builder and Online Exam remain disabled in the sidebar.
+3. Add, search, edit, and delete a question to confirm the Question Bank flows work.
+4. Open Quiz Builder and confirm the quiz list loads.
+5. Open Online Exam and confirm the Available Exams page loads.
 
-For the full release checklist, see [v1-verification.md](v1-verification.md).
+For full release checklists:
+
+- [v1-verification.md](v1-verification.md) — Question Bank V1
+- [v2-verification.md](v2-verification.md) — Quiz Builder V2
+- [v3-verification.md](v3-verification.md) — Online Exam V3
