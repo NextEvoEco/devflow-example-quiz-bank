@@ -136,6 +136,15 @@ Planned Versions
 
 ---
 
+# Rebuild Comparison
+
+This branch (`rebuild/compare`) is the hub for the multi-tool rebuild experiment.
+
+* [docs/rebuild-index.md](docs/rebuild-index.md) — start here: reading guide and directory map
+* [docs/rebuild-comparison.md](docs/rebuild-comparison.md) — full cross-tool analysis
+
+---
+
 # License
 
 MIT License
