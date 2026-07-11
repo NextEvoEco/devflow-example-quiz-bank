@@ -84,7 +84,7 @@ Target-forward note:
 ### Database
 
 - SQLite database for persisted records
-- schema managed through versioned migrations (v1–v4)
+- schema managed through versioned migrations (v1–v3; `SCHEMA_VERSION = 3` in `backend/database.py`)
 - tables: `questions`, `quizzes`, `quiz_questions`, `exam_attempts`, `exam_answers`
 
 ### Tests

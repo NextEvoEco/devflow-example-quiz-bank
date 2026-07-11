@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Bank</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="app-shell">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <span class="sidebar-logo-mark">QB</span>
+                <span class="sidebar-logo-text">Quiz Bank</span>
+            </div>
+            <nav class="sidebar-nav">
+                <button type="button" class="nav-item is-active" data-page="questions">Question Bank</button>
+                <button type="button" class="nav-item" data-page="quizList">Quiz Builder</button>
+                <button type="button" class="nav-item" data-page="examList">Online Exam</button>
+            </nav>
+        </aside>
+
+        <!-- Main -->
+        <div class="main">
+            <header class="top-bar">
+                <h1 class="top-bar-title" id="page-title">Questions</h1>
+            </header>
+
+            <main class="content">
+                <section class="page" id="page-questions">
+                    <div class="page-header">
+                        <div class="page-header-left">
+                            <h2 class="page-title">Questions</h2>
+                            <span class="count-badge" id="question-count">0</span>
+                        </div>
+                        <button type="button" class="btn btn-primary" id="add-question-btn">Add Question</button>
+                    </div>
+
+                    <div class="search-box">
+                        <span class="search-icon" aria-hidden="true">&#128269;</span>
+                        <input type="text" id="search-input" class="search-input"
+                               placeholder="Search questions..." autocomplete="off">
+                    </div>
+
+                    <!-- Question table -->
+                    <table class="question-table" id="question-table">
+                        <thead>
+                            <tr>
+                                <th class="col-question">Question</th>
+                                <th class="col-difficulty">Difficulty</th>
+                                <th class="col-actions">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="question-tbody"></tbody>
+                    </table>
+
+                    <!-- Empty state -->
+                    <div class="empty-state" id="empty-state" hidden>
+                        <div class="empty-state-icon" aria-hidden="true">&#128193;</div>
+                        <h3 class="empty-state-title" id="empty-state-title">No questions found</h3>
+                        <p class="empty-state-text" id="empty-state-text">
+                            Get started by adding your first question.
+                        </p>
+                        <button type="button" class="btn btn-primary" id="empty-add-btn">Add Question</button>
+                    </div>
+                </section>
+
+                <!-- Quiz List (quizList) -->
+                <section class="page" id="page-quizList" hidden>
+                    <div class="page-header">
+                        <div class="page-header-left">
+                            <h2 class="page-title">Quizzes</h2>
+                            <span class="count-badge" id="quiz-count">0</span>
+                        </div>
+                        <button type="button" class="btn btn-primary" id="new-quiz-btn">New Quiz</button>
+                    </div>
+
+                    <div class="quiz-grid" id="quiz-grid"></div>
+
+                    <!-- Empty state -->
+                    <div class="empty-state" id="quiz-empty-state" hidden>
+                        <div class="empty-state-icon" aria-hidden="true">&#128221;</div>
+                        <h3 class="empty-state-title">No quizzes yet</h3>
+                        <p class="empty-state-text">Create your first quiz from the question bank.</p>
+                        <button type="button" class="btn btn-primary" id="quiz-empty-new-btn">Create Quiz</button>
+                    </div>
+                </section>
+
+                <!-- Quiz Builder: Create / Edit (quizCreate) -->
+                <section class="page builder-page" id="page-quizCreate" hidden>
+                    <button type="button" class="back-link" id="quiz-back-link">&larr; Back to Quizzes</button>
+                    <h2 class="page-title" id="quiz-builder-title">New Quiz</h2>
+
+                    <p class="form-error" id="quiz-form-error" hidden></p>
+
+                    <!-- Quiz details -->
+                    <div class="builder-card">
+                        <div class="field">
+                            <label for="quiz-name">Quiz name</label>
+                            <input type="text" id="quiz-name" autocomplete="off" placeholder="e.g. Algebra Basics">
+                        </div>
+                    </div>
+
+                    <!-- Selected Questions -->
+                    <div class="builder-card">
+                        <div class="builder-panel-header">
+                            <h3 class="builder-panel-title">Selected Questions</h3>
+                            <span class="count-badge" id="selected-count">0</span>
+                        </div>
+                        <div class="builder-list" id="selected-list"></div>
+                        <p class="builder-empty" id="selected-empty">No questions selected.</p>
+                    </div>
+
+                    <!-- Add Questions -->
+                    <div class="builder-card">
+                        <div class="builder-panel-header">
+                            <h3 class="builder-panel-title">Add Questions</h3>
+                        </div>
+                        <div class="search-box">
+                            <span class="search-icon" aria-hidden="true">&#128269;</span>
+                            <input type="text" id="available-search" class="search-input"
+                                   placeholder="Search questions..." autocomplete="off">
+                        </div>
+                        <div class="builder-list" id="available-list"></div>
+                        <p class="builder-empty" id="available-empty" hidden>
+                            All questions added or no matches found.
+                        </p>
+                    </div>
+
+                    <div class="builder-footer">
+                        <button type="button" class="btn btn-secondary" id="quiz-preview-btn">Preview</button>
+                        <span class="builder-footer-spacer"></span>
+                        <button type="button" class="btn btn-secondary" id="quiz-cancel-btn">Cancel</button>
+                        <button type="button" class="btn btn-primary" id="quiz-save-btn">Save Quiz</button>
+                    </div>
+                </section>
+
+                <!-- Online Exam: Available Exams (examList) -->
+                <section class="page" id="page-examList" hidden>
+                    <div class="page-header">
+                        <div class="page-header-left">
+                            <h2 class="page-title">Available Exams</h2>
+                        </div>
+                    </div>
+
+                    <div class="quiz-grid" id="exam-grid"></div>
+
+                    <div class="empty-state" id="exam-empty-state" hidden>
+                        <div class="empty-state-icon" aria-hidden="true">&#128221;</div>
+                        <h3 class="empty-state-title">No exams available</h3>
+                        <p class="empty-state-text">Create a quiz in the Quiz Builder to take it as an exam.</p>
+                    </div>
+                </section>
+
+                <!-- Online Exam: in-exam question view (examTaking) -->
+                <section class="page exam-page" id="page-examTaking" hidden>
+                    <div class="exam-header">
+                        <div class="exam-header-left">
+                            <span class="exam-quiz-label" id="exam-quiz-name"></span>
+                            <span class="exam-progress-label" id="exam-progress-label"></span>
+                        </div>
+                        <button type="button" class="btn btn-secondary" id="exam-exit-btn">Exit</button>
+                    </div>
+
+                    <div class="exam-progress" aria-hidden="true">
+                        <div class="exam-progress-fill" id="exam-progress-fill"></div>
+                    </div>
+
+                    <div class="exam-nav-numbers" id="exam-nav-numbers"></div>
+
+                    <div class="exam-question-card">
+                        <p class="exam-question-text" id="exam-question-text"></p>
+                        <div class="exam-options" id="exam-options"></div>
+                    </div>
+
+                    <div class="exam-footer">
+                        <button type="button" class="btn btn-secondary" id="exam-prev-btn">Previous</button>
+                        <button type="button" class="btn btn-primary" id="exam-next-btn">Next</button>
+                    </div>
+                </section>
+
+                <!-- Online Exam: results (examResults) -->
+                <section class="page exam-page results-page" id="page-examResults" hidden>
+                    <div class="results-head">
+                        <span class="results-quiz-label" id="results-quiz-name"></span>
+                        <h2 class="results-heading">Exam Complete!</h2>
+                    </div>
+
+                    <div class="results-summary">
+                        <div class="score-ring-wrap">
+                            <svg class="score-ring" viewBox="0 0 120 120" width="120" height="120" aria-hidden="true">
+                                <circle class="ring-track" cx="60" cy="60" r="52"></circle>
+                                <circle class="ring-progress" id="results-ring" cx="60" cy="60" r="52"></circle>
+                            </svg>
+                            <div class="score-ring-center">
+                                <span class="score-pct" id="results-pct">0%</span>
+                                <span class="score-frac" id="results-frac">0 / 0</span>
+                            </div>
+                        </div>
+                        <div class="score-cells">
+                            <div class="score-cell score-cell-correct">
+                                <span class="score-cell-num" id="results-correct">0</span>
+                                <span class="score-cell-label">Correct</span>
+                            </div>
+                            <div class="score-cell score-cell-incorrect">
+                                <span class="score-cell-num" id="results-incorrect">0</span>
+                                <span class="score-cell-label">Incorrect</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="results-review" id="results-review"></div>
+
+                    <div class="results-footer">
+                        <button type="button" class="btn btn-secondary" id="results-back-btn">Back to Exams</button>
+                        <button type="button" class="btn btn-primary" id="results-retry-btn">Retry Quiz</button>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- Question Editor Modal (Add / Edit) -->
+    <div class="modal-overlay" id="editor-overlay" hidden>
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="editor-title">
+            <div class="modal-header">
+                <h2 class="modal-title" id="editor-title">Add Question</h2>
+                <button type="button" class="modal-close" id="editor-close" aria-label="Close">&times;</button>
+            </div>
+            <form class="modal-body" id="editor-form" novalidate>
+                <p class="form-error" id="form-error" hidden></p>
+
+                <div class="field">
+                    <label for="f-question">Question text</label>
+                    <textarea id="f-question" name="question" rows="3"></textarea>
+                    <span class="field-error" data-error-for="question" hidden></span>
+                </div>
+
+                <div class="field">
+                    <label for="f-a">Option A</label>
+                    <input type="text" id="f-a" name="a" autocomplete="off">
+                    <span class="field-error" data-error-for="a" hidden></span>
+                </div>
+
+                <div class="field">
+                    <label for="f-b">Option B</label>
+                    <input type="text" id="f-b" name="b" autocomplete="off">
+                    <span class="field-error" data-error-for="b" hidden></span>
+                </div>
+
+                <div class="field">
+                    <label for="f-c">Option C</label>
+                    <input type="text" id="f-c" name="c" autocomplete="off">
+                    <span class="field-error" data-error-for="c" hidden></span>
+                </div>
+
+                <div class="field">
+                    <label for="f-d">Option D</label>
+                    <input type="text" id="f-d" name="d" autocomplete="off">
+                    <span class="field-error" data-error-for="d" hidden></span>
+                </div>
+
+                <div class="field">
+                    <label for="f-correct">Correct Answer</label>
+                    <select id="f-correct" name="correct">
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                        <option value="D">D</option>
+                    </select>
+                    <span class="field-error" data-error-for="correct" hidden></span>
+                </div>
+
+                <div class="field">
+                    <label for="f-difficulty">Difficulty</label>
+                    <select id="f-difficulty" name="difficulty">
+                        <option value="Easy">Easy</option>
+                        <option value="Medium" selected>Medium</option>
+                        <option value="Hard">Hard</option>
+                    </select>
+                    <span class="field-error" data-error-for="difficulty" hidden></span>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="editor-cancel">Cancel</button>
+                    <button type="submit" class="btn btn-primary" id="editor-save">Save Question</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Dialog -->
+    <div class="modal-overlay" id="delete-overlay" hidden>
+        <div class="dialog" role="alertdialog" aria-modal="true" aria-labelledby="delete-title">
+            <div class="dialog-icon" aria-hidden="true">&#9888;</div>
+            <h2 class="dialog-title" id="delete-title">Delete Question</h2>
+            <p class="dialog-text">
+                This question will be permanently removed from the question bank.
+                This action cannot be undone.
+            </p>
+            <div class="dialog-footer">
+                <button type="button" class="btn btn-secondary" id="delete-cancel">Cancel</button>
+                <button type="button" class="btn btn-danger" id="delete-confirm">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Quiz Confirmation Dialog -->
+    <div class="modal-overlay" id="quiz-delete-overlay" hidden>
+        <div class="dialog" role="alertdialog" aria-modal="true" aria-labelledby="quiz-delete-title">
+            <div class="dialog-icon" aria-hidden="true">&#9888;</div>
+            <h2 class="dialog-title" id="quiz-delete-title">Delete Quiz</h2>
+            <p class="dialog-text" id="quiz-delete-text">
+                This quiz will be permanently removed. This action cannot be undone.
+            </p>
+            <div class="dialog-footer">
+                <button type="button" class="btn btn-secondary" id="quiz-delete-cancel">Cancel</button>
+                <button type="button" class="btn btn-danger" id="quiz-delete-confirm">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quiz Preview Modal -->
+    <div class="modal-overlay" id="preview-overlay" hidden>
+        <div class="modal preview-modal" role="dialog" aria-modal="true" aria-labelledby="preview-title">
+            <div class="modal-header">
+                <h2 class="modal-title" id="preview-title">Quiz Preview</h2>
+                <button type="button" class="modal-close" id="preview-close" aria-label="Close">&times;</button>
+            </div>
+            <div class="modal-body" id="preview-body"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="preview-close-btn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/app.js"></script>
+    <script src="/js/quiz-list.js"></script>
+    <script src="/js/quiz-builder.js"></script>
+    <script src="/js/quiz-preview.js"></script>
+    <script src="/js/exam-list.js"></script>
+    <script src="/js/exam-taking.js"></script>
+    <script src="/js/exam-results.js"></script>
+</body>
+</html>

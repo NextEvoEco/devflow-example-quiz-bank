@@ -16,11 +16,15 @@ The repository includes a fully runnable Quiz Bank implementation covering all t
 
 - `.devflow/` : DevFlow workflow state, context, templates, roles, skills, and task artifacts
 - `backend/` : Python server, API entrypoints, configuration, and database bootstrap
-- `fixtures/` : manual demo or test content files, such as question-bank seed material prepared for human entry
 - `frontend/` : HTML/CSS/JavaScript client assets
 - `tests/` : automated tests for the local application
-- `docs/` : human-readable supporting documentation such as getting-started, app startup, and verification guidance
+- `docs/` : human-readable supporting documentation (getting-started and verification guides)
 - `data/` : generated at runtime; stores the local SQLite database file
+- `screenshots/` : browser verification captures for this rebuild (`code_*.png`)
+
+Note: `fixtures/` is git-ignored and empty on this branch. In the earlier main-line
+implementation it held question-bank seed material (`world-geography-basic-50.md`) for
+manual data entry and demos; this rebuild does not carry that seed file.
 - root markdown files such as `README.md`, `AGENTS.md`, and `CLAUDE.md` : repository bootstrap and usage guidance
 
 ### Main Application Areas
@@ -35,7 +39,6 @@ Current meaningful areas:
 - `.devflow/evidence/` : execution and verification records
 - `backend/` : Flask app factory, startup entrypoint, config, SQLite bootstrap, and route modules under `backend/routes/`
 - `backend/exam_repository.py` : exam attempt and answer repository
-- `fixtures/` : reusable question-bank content prepared for manual input or demos
 - `frontend/` : Question Bank, Quiz Builder, and Online Exam pages and JavaScript modules
 - `tests/` : bootstrap, API, repository, page module, and release verification tests for V1–V3
 - `docs/` : startup and verification instructions for all three shipped versions (V1, V2, V3)

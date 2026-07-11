@@ -66,11 +66,30 @@ Each version introduces additional DevFlow artifacts while keeping the applicati
     templates/      Artifact templates
 
 docs/
-    Supporting documentation
+    Supporting documentation (getting-started, verification guides)
 
-src/
-    Application source code
+backend/
+    Python Flask server: app factory, routes, repositories, validation
+frontend/
+    Static client: HTML shell, CSS, and per-page JavaScript modules
+tests/
+    Automated pytest suite (API, repositories, page modules, releases)
+data/
+    Runtime-generated SQLite database (git-ignored)
+screenshots/
+    Browser verification captures for this rebuild (code_*.png)
 ```
+
+## Rebuild Artifacts (this branch)
+
+Because this branch is the Claude Code rebuild (see *Rebuild Comparison Experiment*
+below), it carries a few tool-specific artifacts, all using a `code_` prefix so results
+from different tools never collide:
+
+- `.devflow/evidence/code_acr.md` — a single merged **Acceptance Criteria Verification**
+  table consolidating every `.devflow/evidence/o0*-e0*.md` result into one view.
+- `screenshots/code_*.png` — browser verification captures taken while validating the
+  V1/V2/V3 flows (question bank, quiz builder, online exam).
 
 ---
 
@@ -88,6 +107,32 @@ This allows development to continue across:
 * different development tools
 
 without reconstructing project context from scratch.
+
+---
+
+# Rebuild Comparison Experiment
+
+This repository is also used as a controlled experiment:
+**can different AI coding tools rebuild the same application from the same DevFlow artifacts, and how do the results differ?**
+
+Every implementation branch shares one starting point — the DevFlow artifacts
+(intent, interview, objective, tasks) frozen at branch `rebuild/base`, which contains
+**no application code**. From that identical specification, each branch reconstructs the
+Quiz Bank application using a different AI tool:
+
+| Branch           | AI Tool     | Contents                                 |
+| ---------------- | ----------- | ---------------------------------------- |
+| `rebuild/base`   | —           | DevFlow artifacts only (shared baseline) |
+| `rebuild/code`   | Claude Code | Implementation built by Claude Code      |
+| `rebuild/codex`  | Codex       | Implementation built by Codex            |
+| `rebuild/cursor` | Cursor      | Implementation built by Cursor           |
+
+Because every branch starts from the same tasks, comparing them
+(`git diff rebuild/base rebuild/<tool>`, or two tool branches against each other)
+isolates how each tool interprets and executes an identical DevFlow specification —
+architecture choices, code structure, test coverage, and adherence to task boundaries.
+
+**This branch (`rebuild/code`) is the Claude Code rebuild.**
 
 ---
 
@@ -127,12 +172,37 @@ This repository focuses on demonstrating how DevFlow is applied in practice.
 
 Current Version
 
-* V1 — Question Bank (In Progress)
+* V1 — Question Bank (Complete)
+* V2 — Quiz Builder (Complete)
+* V3 — Online Exam (Complete)
 
-Planned Versions
+---
 
-* V2 — Quiz Builder
-* V3 — Online Exam
+# Running The Application
+
+Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+Start the local server:
+
+```bash
+py -m backend
+```
+
+Then open `http://127.0.0.1:5000/` in a browser. The SQLite database file is created automatically on first start at `data/quiz_bank.db`.
+
+Run the automated tests:
+
+```bash
+py -m pytest
+```
+
+For a full local run and manual verification checklist, see
+[docs/verification.md](docs/verification.md) (V1 + V2) and
+[docs/v3-verification.md](docs/v3-verification.md) (V3 Online Exam).
 
 ---
 

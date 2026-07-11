@@ -16,7 +16,7 @@ Leave it blank in the starter repository.
 
 **Project Type:** Local web application
 
-**Project Description:** A lightweight Quiz Bank application used to demonstrate the DevFlow workflow. V1 focuses on Question Bank CRUD with a Python backend, plain HTML/CSS/JavaScript frontend, and SQLite persistence.
+**Project Description:** A lightweight Quiz Bank application used to demonstrate the DevFlow workflow, built with a Python backend, plain HTML/CSS/JavaScript frontend, and SQLite persistence. Scope spans V1 Question Bank CRUD, V2 Quiz Builder, and V3 Online Exam.
 
 **Target Users:** Educators and learners using a local demo application
 
@@ -33,6 +33,28 @@ DevFlow separates:
 - current runtime state
 - durable execution memory
 - intent, planning, execution, and evidence
+
+---
+
+## Rebuild Comparison Experiment
+
+This repository runs a controlled experiment: multiple branches reconstruct the same Quiz Bank
+application from the **same DevFlow artifacts**, each using a different AI tool, so the outputs
+can be compared.
+
+- `rebuild/base` — DevFlow artifacts only, **no application code**; the shared baseline (`c105cbd`)
+- `rebuild/code` — rebuilt with Claude Code
+- `rebuild/codex` — rebuilt with Codex
+- `rebuild/cursor` — rebuilt with Cursor
+
+Rules for any agent working on a rebuild branch:
+
+- rebuild only from the DevFlow artifacts (intent, interview, objective, tasks) on the current branch
+- do not read from or align with the other rebuild branches — each tool must solve the tasks
+  independently or the comparison is meaningless
+- keep every change traceable to the task it satisfies, and record outcomes as evidence
+
+See the *Rebuild Comparison Experiment* section in `README.md` for the full branch/tool table.
 
 ---
 
