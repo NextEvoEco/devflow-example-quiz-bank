@@ -53,63 +53,60 @@ The current codebase delivers all three planned slices: Question Bank (V1), Quiz
 
 Today:
 
-- the frontend renders Question Bank, Quiz Builder, and Online Exam pages from static assets in `frontend/`
+- the frontend renders Question Bank, Quiz Builder, and Online Exam views from static assets in `frontend/` (`index.html`, `app.js`, `styles.css`)
 - the backend exposes `/api/questions`, `/api/quizzes`, and `/api/exams` route groups
-- question persistence is handled in SQLite through `QuestionRepository`
-- quiz persistence is handled through `QuizRepository`
-- exam attempt and answer persistence is handled through `ExamAttemptRepository` in `backend/exam_repository.py`
+- question persistence is handled through `QuestionRepository`, quizzes through `QuizRepository`, and exam attempts/answers through `ExamAttemptRepository` (`backend/exam_repository.py`)
+- SQLite initialization and migrations are handled in `backend/db.py`
 - the app is started locally with `py -m backend`
 
 ## Major Components
 
 ### Frontend
 
-- plain HTML page structure
-- CSS styling for the current Question Bank implementation
-- plain JavaScript state and event handling
-- browser-side rendering for implemented V1 flows
+- plain HTML page structure (`frontend/index.html`) with one hidden `page-view` section per view
+- CSS styling in `frontend/styles.css`
+- a single plain-JavaScript controller (`frontend/app.js`) that caches elements, binds events, and renders every view
+- browser-side rendering for Question Bank, Quiz Builder, and Online Exam flows
 
-Target-forward note:
+Note:
 
-- `ui-spec.md` may define additional views and interactions that are not yet present in the live code
+- the JS caches DOM nodes by id at startup and calls `addEventListener` on them in `bindEvents()`; every id referenced in `app.js` must exist in `index.html`, or `bindEvents()` throws and aborts all initialization (see `.devflow/memory.md`)
 
 ### Backend
 
-- Python application entrypoint for local startup
-- HTTP layer for Question Bank (`/api/questions`), Quiz Builder (`/api/quizzes`), and Online Exam (`/api/exams`) APIs
+- Python application entrypoint for local startup (`py -m backend`)
+- Flask app factory (`backend/app.py`)
+- HTTP layer for Question Bank (`/api/questions`), Quiz Builder (`/api/quizzes`), and Online Exam (`/api/exams`), with routes under `backend/routes/`
 - validation layer for question and quiz payloads
 - data-access layer via `QuestionRepository`, `QuizRepository`, and `ExamAttemptRepository`
-- routes modularized under `backend/routes/`
 
 ### Database
 
 - SQLite database for persisted records
-- schema managed through versioned migrations (v1–v4)
+- schema managed through versioned migrations recorded in a `schema_migrations` table (versions 1–3), applied in `backend/db.py`
 - tables: `questions`, `quizzes`, `quiz_questions`, `exam_attempts`, `exam_answers`
+- the `questions` table stores the answer key in a `correct_answer` column (`A`–`D`)
 
 ### Tests
 
-- basic automated backend and/or integration tests
-- verification of local startup, validation, and core Question Bank behavior
+- automated pytest suite covering repositories, APIs, page modules, and release checks for V1–V3
+- verification of local startup, validation, CRUD, quiz building, and exam scoring
 
 ## Data Flow
 
-Expected V1 request flow:
+Typical request flow:
 
 1. User opens the local web app in a browser
-2. Frontend loads the Question Bank page
-3. Frontend requests question data from the Python backend
-4. Backend validates input, reads or writes data in SQLite, and returns results
-5. Frontend updates the visible state
+2. `app.js` initializes, binds events, and requests data from the backend (`/api/questions`, `/api/quizzes`)
+3. Backend validates input, reads or writes SQLite, and returns JSON
+4. Frontend renders the active view and updates the visible state
 
-Mutation flow:
+Mutation flow (add/edit/delete question, build/save quiz, take/submit exam):
 
-1. User submits add, edit, or delete actions from the UI
-2. Frontend sends the request to the backend
-3. Backend validates the request
-4. Backend updates SQLite
-5. Backend returns success or error response
-6. Frontend refreshes the list or shows error feedback
+1. User submits an action from the UI
+2. Frontend sends the request to the matching `/api/*` endpoint
+3. Backend validates, updates SQLite, and returns success or error
+4. Frontend refreshes the view or surfaces error feedback
 
 ## Integration Points
 

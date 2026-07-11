@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "quiz-bank",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "backend"],
+      "port": 5000,
+      "autoPort": true
+    }
+  ]
+}

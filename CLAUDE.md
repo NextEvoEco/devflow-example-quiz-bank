@@ -9,16 +9,34 @@ Project-specific information should be written in `.devflow/context/`, `.devflow
 
 ## Project Description
 
-Fill this section when a real project starts.
-Leave it blank in the starter repository.
+**Project Name:** Quiz Bank (DevFlow example project)
 
-**Project Name:** {fill when project starts}
+**Project Type:** Local web application
 
-**Project Type:** {fill when project starts}
+**Project Description:** A lightweight Quiz Bank application used to demonstrate the DevFlow workflow, built with a Python backend, plain HTML/CSS/JavaScript frontend, and SQLite persistence. Scope spans V1 Question Bank CRUD, V2 Quiz Builder, and V3 Online Exam.
 
-**Project Description:** {fill when project starts}
+**Target Users:** Educators and learners using a local demo application
 
-**Target Users:** {fill when project starts}
+---
+
+## Rebuild Branch Context
+
+This repository runs a **rebuild comparison experiment**: several branches reconstruct the
+same Quiz Bank application from the same DevFlow artifacts, each using a different AI tool,
+so the results can be compared. See the *Rebuild Comparison Experiment* section in `README.md`
+(and `docs/rebuild-comparison.md`) for the full branch/tool table.
+
+**This branch is `rebuild/codex` — the Codex rebuild.**
+
+If a Claude session works on this branch, it should:
+
+- rebuild strictly from the DevFlow artifacts (intent, interview, objective, tasks) on this branch
+- treat `rebuild/base` (`c105cbd`) as the shared, code-free starting point
+- **not** read, copy, or align with the sibling rebuild branches (`rebuild/code`, `rebuild/cursor`);
+  the comparison is only meaningful if each tool solves the tasks independently
+- keep implementation traceable to the task it satisfies, and record outcomes as evidence
+
+The rest of this file is intentionally project-agnostic and applies to any DevFlow work here.
 
 ---
 

@@ -9,15 +9,15 @@ Keep it lightweight and current.
 
 ## Current State
 
-| Field             | Value |
-| ----------------- | ----- |
-| Current Intent    |       |
-| Current Objective |       |
-| Current Task      |       |
-| Current Role      |       |
-| Progress          |       |
-| Resume Point      |       |
-| Next Action       |       |
+| Field             | Value                                                                                                                                                                                                                                                                                                                                                                         |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Current Intent    | i03-online-exam                                                                                                                                                                                                                                                                                                                                                               |
+| Current Objective | o03-online-exam-v1                                                                                                                                                                                                                                                                                                                                                            |
+| Current Task      | o03/t06-add-tests-and-release-verification                                                                                                                                                                                                                                                                                                                                    |
+| Current Role      | developer                                                                                                                                                                                                                                                                                                                                                                     |
+| Progress          | All three versions (V1 Question Bank, V2 Quiz Builder, V3 Online Exam) implemented and release-verified. Post-release fixes applied this session: (1) rebuilt `data/quiz_bank.db` into this branch's schema (`correct_answer`) with seeded data; (2) fixed a frontend JS↔HTML mismatch where `app.js` referenced missing elements and aborted init. See `.devflow/memory.md`. |
+| Resume Point      | Roadmap complete and verified. Resume here only if follow-up fixes or a new objective are introduced.                                                                                                                                                                                                                                                                         |
+| Next Action       | No implementation tasks remain. Open the next objective or perform optional polish work if requested.                                                                                                                                                                                                                                                                         |
 
 ---
 
@@ -25,12 +25,12 @@ Keep it lightweight and current.
 
 Fill paths only when the corresponding artifact exists.
 
-| Artifact         | Path |
-| ---------------- | ---- |
-| Intent           |      |
-| Objective        |      |
-| Task             |      |
-| Related Evidence |      |
+| Artifact         | Path                                                              |
+| ---------------- | ----------------------------------------------------------------- |
+| Intent           | `.devflow/intent/i03-online-exam.md`                              |
+| Objective        | `.devflow/objective/o03-online-exam-v1.md`                        |
+| Task             | `.devflow/tasks/o03/t06-add-tests-and-release-verification.md`    |
+| Related Evidence | `.devflow/evidence/o03-e06-add-tests-and-release-verification.md` |
 
 ---
 
@@ -62,11 +62,3 @@ If a referenced artifact does not exist yet, continue with the next relevant fil
 - Replace outdated values instead of appending chat-like logs
 - Store cross-session discoveries in `.devflow/memory.md`
 - Store completed implementation results in evidence artifacts
-
----
-
-## Starter Notes
-
-- Leave fields blank until the project starts
-- Do not pre-fill old project history into this file
-- Keep the structure stable so future AI sessions can resume reliably

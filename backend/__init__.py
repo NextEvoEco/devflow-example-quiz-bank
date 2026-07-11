@@ -1,0 +1,2 @@
+"""Quiz Bank backend package."""
+

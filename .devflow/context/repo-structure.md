@@ -15,13 +15,17 @@ The repository includes a fully runnable Quiz Bank implementation covering all t
 ### Top-Level Directories
 
 - `.devflow/` : DevFlow workflow state, context, templates, roles, skills, and task artifacts
-- `backend/` : Python server, API entrypoints, configuration, and database bootstrap
-- `fixtures/` : manual demo or test content files, such as question-bank seed material prepared for human entry
-- `frontend/` : HTML/CSS/JavaScript client assets
+- `backend/` : Python Flask server, app factory, route modules, repositories, validation, and database migrations
+- `frontend/` : HTML/CSS/JavaScript client assets (`index.html`, `app.js`, `styles.css`)
 - `tests/` : automated tests for the local application
-- `docs/` : human-readable supporting documentation such as getting-started, app startup, and verification guidance
+- `docs/` : human-readable supporting documentation (getting-started, release/verification guides, rebuild comparison)
 - `data/` : generated at runtime; stores the local SQLite database file
+- `screenshots/` : browser verification captures for this rebuild (`codex_*.png`)
 - root markdown files such as `README.md`, `AGENTS.md`, and `CLAUDE.md` : repository bootstrap and usage guidance
+
+Note: `fixtures/` is git-ignored and absent on this branch. In the earlier main-line
+implementation it held question-bank seed material for manual data entry and demos; this
+rebuild does not carry that seed file.
 
 ### Main Application Areas
 
@@ -33,18 +37,17 @@ Current meaningful areas:
 - `.devflow/objective/` : confirmed objective artifacts
 - `.devflow/tasks/` : executable task definitions
 - `.devflow/evidence/` : execution and verification records
-- `backend/` : Flask app factory, startup entrypoint, config, SQLite bootstrap, and route modules under `backend/routes/`
+- `backend/` : Flask app factory, startup entrypoint, config, SQLite migrations, and route modules under `backend/routes/`
 - `backend/exam_repository.py` : exam attempt and answer repository
-- `fixtures/` : reusable question-bank content prepared for manual input or demos
-- `frontend/` : Question Bank, Quiz Builder, and Online Exam pages and JavaScript modules
-- `tests/` : bootstrap, API, repository, page module, and release verification tests for V1–V3
-- `docs/` : startup and verification instructions for all three shipped versions (V1, V2, V3)
+- `frontend/` : Question Bank, Quiz Builder, and Online Exam views in a single `app.js` controller
+- `tests/` : repository, API, page module, and release verification tests for V1–V3
+- `docs/` : startup, release, and verification instructions plus the rebuild comparison
 
 ### Generated Or Derived Files
 
 Known generated or runtime-derived items:
 
-- `data/quiz_bank.db` : local SQLite database file
+- `data/quiz_bank.db` : local SQLite database file created on first app start
 - Python cache directories such as `__pycache__/`
 - `.pytest_cache/` when tests are run
 
