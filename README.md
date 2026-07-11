@@ -65,11 +65,11 @@ Each version introduces additional DevFlow artifacts while keeping the applicati
     skills/         AI skill definitions
     templates/      Artifact templates
 
-docs/
-    Supporting documentation
-
-src/
-    Application source code
+backend/            Python server, API, and SQLite bootstrap
+frontend/           HTML/CSS/JavaScript client assets
+tests/              Automated tests and release verification
+docs/               Startup and verification documentation
+screenshots/        Browser verification captures for this rebuild (cursor_*.png)
 ```
 
 ---
@@ -88,6 +88,43 @@ This allows development to continue across:
 * different development tools
 
 without reconstructing project context from scratch.
+
+---
+
+# Rebuild Comparison Experiment
+
+This repository is also used as a controlled experiment:
+**can different AI coding tools rebuild the same application from the same DevFlow artifacts, and how do the results differ?**
+
+Every implementation branch shares one starting point — the DevFlow artifacts
+(intent, interview, objective, tasks) frozen at branch `rebuild/base`, which contains
+**no application code**. From that identical specification, each branch reconstructs the
+Quiz Bank application using a different AI tool:
+
+| Branch           | AI Tool     | Contents                                 |
+| ---------------- | ----------- | ---------------------------------------- |
+| `rebuild/base`   | —           | DevFlow artifacts only (shared baseline) |
+| `rebuild/code`   | Claude Code | Implementation built by Claude Code      |
+| `rebuild/codex`  | Codex       | Implementation built by Codex            |
+| `rebuild/cursor` | Cursor      | Implementation built by Cursor           |
+
+Because every branch starts from the same tasks, comparing them
+(`git diff rebuild/base rebuild/<tool>`, or two tool branches against each other)
+isolates how each tool interprets and executes an identical DevFlow specification —
+architecture choices, code structure, test coverage, and adherence to task boundaries.
+
+**This branch (`rebuild/cursor`) is the Cursor rebuild.**
+
+The cross-tool analysis (methodology + metrics) lives in
+[docs/rebuild-comparison.md](docs/rebuild-comparison.md).
+
+## Rebuild Artifacts (this branch)
+
+Tool-specific artifacts use a `cursor_` prefix so results from different tools never collide:
+
+- `.devflow/evidence/cursor_acr.md` — a single merged **Acceptance Criteria** table
+  consolidating every `.devflow/evidence/o0*-e0*.md` result into one view.
+- `screenshots/cursor_*.png` — browser verification captures of the V1/V2/V3 flows.
 
 ---
 
@@ -127,12 +164,35 @@ This repository focuses on demonstrating how DevFlow is applied in practice.
 
 Current Version
 
-* V1 — Question Bank (In Progress)
+* V1 — Question Bank (Complete)
+* V2 — Quiz Builder (Complete)
+* V3 — Online Exam (Complete)
 
 Planned Versions
 
-* V2 — Quiz Builder
-* V3 — Online Exam
+* None for the current DevFlow example roadmap
+
+---
+
+# Running The Application
+
+See [docs/app-startup.md](docs/app-startup.md) for install and startup instructions.
+
+See [docs/v1-verification.md](docs/v1-verification.md) for the V1 release verification checklist.
+
+See [docs/v2-verification.md](docs/v2-verification.md) for the V2 release verification checklist.
+
+See [docs/v3-verification.md](docs/v3-verification.md) for the V3 release verification checklist.
+
+Quick start from the repository root:
+
+```bash
+pip install -r requirements.txt
+py -m pytest
+py -m backend
+```
+
+Then open `http://127.0.0.1:5000/` in a browser.
 
 ---
 

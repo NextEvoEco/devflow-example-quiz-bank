@@ -25,17 +25,29 @@ The target product architecture is confirmed at a high level by `.devflow/contex
 
 ### Current Implementation Status
 
-The current repository implements V1 (Question Bank), V2 (Quiz Builder), and V3 (Online Exam).
+After o03/t06, the repository has complete Question Bank V1, Quiz Builder V2, and Online Exam V3 baselines with release verification tests and documentation.
 
 Currently implemented:
 
-- local web application
+- local web application shell started by Flask
 - Python backend with Flask
-- plain HTML/CSS/JavaScript frontend
-- SQLite persistence (questions, quizzes, quiz_questions, exam_attempts, exam_answers)
-- Question Bank list, search, add, edit, and delete flows
-- Quiz Builder create, edit, preview, and delete flows
-- Online Exam attempt, answer saving, submit, and results review flows
+- plain HTML/CSS/JavaScript frontend shell
+- SQLite bootstrap with versioned migrations (`schema_migrations`, questions v1, quizzes v2, exams v3)
+- `QuestionRepository` and `validate_question_payload` for CRUD/search
+- `QuizRepository` and quiz validation for quiz CRUD with ordered references
+- `ExamAttemptRepository` for exam attempt persistence and exam API (schema v3)
+- Question Bank API blueprint under `/api/questions`
+- Quiz API blueprint under `/api/quizzes`
+- Exam API blueprint under `/api/exams`
+- Question Bank list page with search, table rendering, and empty state
+- Question Editor modal (add/edit) and Delete confirmation dialog with validation feedback
+- Quiz List, Quiz Builder, and Quiz Preview frontend flows
+- Online Exam list, in-exam taking, and results frontend flows
+- V1, V2, and V3 release verification tests and documentation
+
+Not yet implemented in live code:
+
+- practice mode, timed exams, attempt history UI, authentication, and cloud deployment
 
 ## Target System Overview
 
@@ -49,25 +61,29 @@ Each shipped version should remain independently runnable and usable on a local 
 
 ## Current Implementation Overview
 
-The current codebase delivers all three planned slices: Question Bank (V1), Quiz Builder (V2), and Online Exam (V3).
+The current codebase delivers the complete o01/t01–t06 Question Bank V1, o02/t01–t06 Quiz Builder V2, and o03/t01–t06 Online Exam V3 slices.
 
 Today:
 
-- the frontend renders Question Bank, Quiz Builder, and Online Exam pages from static assets in `frontend/`
-- the backend exposes `/api/questions`, `/api/quizzes`, and `/api/exams` route groups
-- question persistence is handled in SQLite through `QuestionRepository`
-- quiz persistence is handled through `QuizRepository`
-- exam attempt and answer persistence is handled through `ExamAttemptRepository` in `backend/exam_repository.py`
-- the app is started locally with `py -m backend`
+- the frontend serves Question Bank, Quiz List, Quiz Builder, Quiz Preview, and full Online Exam flows from `frontend/` via hash routing
+- the backend starts with `py -m backend` and serves static assets plus `/api/health`, `/api/questions`, `/api/quizzes`, and `/api/exams`
+- SQLite is initialized at `data/quiz_bank.db` with `questions` (v1), `quizzes`/`quiz_questions` (v2), and `exam_attempts`/`exam_answers` (v3)
+- question persistence and validation live in `QuestionRepository` / `validation.py`
+- quiz persistence and validation live in `QuizRepository` / `quiz_validation.py`
+- exam attempt persistence in `ExamAttemptRepository` / `backend/models.py`
+- Question Bank API routes live in `backend/routes/questions.py`
+- Quiz API routes live in `backend/routes/quizzes.py`
+- Exam API routes live in `backend/routes/exams.py`
+- frontend flows are wired in `frontend/js/questions.js` and `frontend/js/api.js`
 
 ## Major Components
 
 ### Frontend
 
 - plain HTML page structure
-- CSS styling for the current Question Bank implementation
-- plain JavaScript state and event handling
-- browser-side rendering for implemented V1 flows
+- CSS styling for the Question Bank list page
+- plain JavaScript state and event handling for list/search rendering, modal flows, and hash-based page routing
+- browser-side rendering for Question Bank, Quiz List, Quiz Builder, Quiz Preview, and full Online Exam flows (list, taking, results)
 
 Target-forward note:
 
@@ -75,22 +91,43 @@ Target-forward note:
 
 ### Backend
 
-- Python application entrypoint for local startup
-- HTTP layer for Question Bank (`/api/questions`), Quiz Builder (`/api/quizzes`), and Online Exam (`/api/exams`) APIs
-- validation layer for question and quiz payloads
-- data-access layer via `QuestionRepository`, `QuizRepository`, and `ExamAttemptRepository`
-- routes modularized under `backend/routes/`
+- Python application entrypoint for local startup (`py -m backend`)
+- Flask app factory in `backend/app.py`
+- static frontend asset serving
+- `/api/health` endpoint
+- Question Bank API routes for list/search/create/update/delete
+- Quiz API routes for list/create/get/update/delete with ordered question references
+- Exam API routes for attempt create, answer save, and submit with scoring
+- later product extensions (practice mode, timed exams, auth) are out of current scope
 
 ### Database
 
 - SQLite database for persisted records
-- schema managed through versioned migrations (v1–v4)
-- tables: `questions`, `quizzes`, `quiz_questions`, `exam_attempts`, `exam_answers`
+- migration tracking via `schema_migrations`
+- `questions` table (migration v1): question text, options A–D, correct answer, difficulty
+- `quizzes` table (migration v2): quiz name and created timestamp
+- `quiz_questions` join table (migration v2): ordered question references per quiz
+- `exam_attempts` table (migration v3): quiz reference, score, total, timestamps
+- `exam_answers` table (migration v3): per-question selected options for an attempt
+- later product tables beyond exams are added by subsequent objectives
 
 ### Tests
 
-- basic automated backend and/or integration tests
-- verification of local startup, validation, and core Question Bank behavior
+- bootstrap automated tests for health, shell page serving, and SQLite init
+- validation and repository tests for Question Bank persistence
+- API integration tests for Question Bank routes
+- frontend smoke tests for Question Bank page markup, search support, and question flow assets
+- V1 release verification tests in `tests/test_release_verification.py`
+- V2 release verification tests in `tests/test_o02_release_verification.py`
+- V3 release verification tests in `tests/test_v3_release.py`
+- quiz schema tests in `tests/test_quiz_schema.py`
+- quiz API integration tests in `tests/test_quizzes_api.py`
+- exam repository tests in `tests/test_exam_repository.py`
+- exam API integration tests in `tests/test_exam_api.py`
+- exam list page frontend tests in `tests/test_exam_list_page.py`
+- exam taking page frontend tests in `tests/test_exam_taking_page.py`
+- exam results page frontend tests in `tests/test_exam_results_page.py`
+- quiz list, builder, and preview frontend tests
 
 ## Data Flow
 
@@ -132,5 +169,7 @@ When using this file during implementation:
 ## Architectural Constraints
 
 - each shipped version must remain lightweight and releaseable
-- all three planned versions (V1 Question Bank, V2 Quiz Builder, V3 Online Exam) are now complete
+- V1 is complete: Question Bank list/search/add/edit/delete with release verification
+- V2 is complete: Quiz List, Quiz Builder, Quiz Preview, quiz API, and O02 release verification
+- V3 is complete: Online Exam list/taking/results, exam API, and O03 release verification
 - UI behavior follows `.devflow/context/ui-spec.md`

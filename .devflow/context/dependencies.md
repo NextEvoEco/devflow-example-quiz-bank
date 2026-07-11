@@ -10,7 +10,7 @@ Fill this file when dependency choices, critical integrations, or version constr
 
 ## Current Status
 
-The V1 implementation is already running with a small confirmed dependency set.
+The o01/t01 bootstrap is running with a small confirmed dependency set.
 
 This file should reflect the live codebase first, while still noting where later expansion may add dependencies.
 

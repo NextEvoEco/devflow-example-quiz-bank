@@ -10,17 +10,17 @@ Fill this file when the repository contains meaningful code or supporting direct
 
 ## Current Status
 
-The repository includes a fully runnable Quiz Bank implementation covering all three planned versions: Question Bank (V1), Quiz Builder (V2), and Online Exam (V3).
+The repository currently includes complete o01 Question Bank V1, o02 Quiz Builder V2, and o03 Online Exam V3 baselines (t01–t06 each), including release verification tests and documentation.
 
 ### Top-Level Directories
 
 - `.devflow/` : DevFlow workflow state, context, templates, roles, skills, and task artifacts
-- `backend/` : Python server, API entrypoints, configuration, and database bootstrap
-- `fixtures/` : manual demo or test content files, such as question-bank seed material prepared for human entry
+- `backend/` : Python server, configuration, and database bootstrap
 - `frontend/` : HTML/CSS/JavaScript client assets
 - `tests/` : automated tests for the local application
-- `docs/` : human-readable supporting documentation such as getting-started, app startup, and verification guidance
+- `docs/` : human-readable supporting documentation such as getting-started and app startup
 - `data/` : generated at runtime; stores the local SQLite database file
+- `screenshots/` : browser verification captures for this rebuild (`cursor_*.png`)
 - root markdown files such as `README.md`, `AGENTS.md`, and `CLAUDE.md` : repository bootstrap and usage guidance
 
 ### Main Application Areas
@@ -33,12 +33,10 @@ Current meaningful areas:
 - `.devflow/objective/` : confirmed objective artifacts
 - `.devflow/tasks/` : executable task definitions
 - `.devflow/evidence/` : execution and verification records
-- `backend/` : Flask app factory, startup entrypoint, config, SQLite bootstrap, and route modules under `backend/routes/`
-- `backend/exam_repository.py` : exam attempt and answer repository
-- `fixtures/` : reusable question-bank content prepared for manual input or demos
-- `frontend/` : Question Bank, Quiz Builder, and Online Exam pages and JavaScript modules
-- `tests/` : bootstrap, API, repository, page module, and release verification tests for V1–V3
-- `docs/` : startup and verification instructions for all three shipped versions (V1, V2, V3)
+- `backend/` : Flask app factory, startup entrypoint, config, SQLite migrations (v1 questions, v2 quizzes, v3 exams), repositories, and API routes
+- `frontend/` : Question Bank, Quiz Builder, Online Exam pages, modals, and shared API helpers
+- `tests/` : bootstrap, repository/validation, API, frontend page tests, and V1/V2/V3 release verification
+- `docs/` : getting started, app startup, and V1/V2/V3 verification checklists
 
 ### Generated Or Derived Files
 
@@ -78,3 +76,4 @@ When navigating this repository:
 - `ui-spec.md` may describe target product scope ahead of implementation
 - `backend/`, `frontend/`, and `tests/` show the current shipped code
 - `status.md` tells you which slice is currently active for execution
+- do not assume V2/V3 code exists until later tasks create it
