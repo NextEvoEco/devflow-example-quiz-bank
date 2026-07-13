@@ -6,7 +6,7 @@
 **Depends On:** o01/t03-implement-question-bank-api
 **Complexity:** M
 **Estimated Duration:** 1 hr
-**Status:** verified
+**Status:** completed
 
 ---
 
@@ -53,20 +53,20 @@ This task implements the visible Question Bank page shell, list rendering, searc
 
 ## 4. Inputs
 
-| Artifact | Source |
-| --- | --- |
-| Objective definition | `.devflow/objective/o01-question-bank-v1.md` |
-| Question Bank API | `o01/t03-implement-question-bank-api` |
-| UI layout and component guidance | `.devflow/context/ui-spec.md` |
+| Artifact                         | Source                                       |
+| -------------------------------- | -------------------------------------------- |
+| Objective definition             | `.devflow/objective/o01-question-bank-v1.md` |
+| Question Bank API                | `o01/t03-implement-question-bank-api`        |
+| UI layout and component guidance | `.devflow/context/ui-spec.md`                |
 
 ---
 
 ## 5. Outputs
 
-| Artifact | Path |
-| --- | --- |
-| Question Bank HTML/CSS/JavaScript page implementation | `frontend/` |
-| Frontend tests or smoke checks for list/search behavior | `tests/` |
+| Artifact                                                | Path            |
+| ------------------------------------------------------- | --------------- |
+| Question Bank React view implementation (TypeScript)    | `frontend/src/` |
+| Frontend tests or smoke checks for list/search behavior | `tests/`        |
 
 ---
 

@@ -13,50 +13,52 @@ Do not guess. Add only confirmed stack decisions.
 
 ### Languages
 
-- Python for backend implementation
-- HTML for page structure
-- CSS for styling
-- JavaScript for frontend interaction
+- Java 21 for backend implementation
+- TypeScript for frontend implementation (React function components)
+- HTML/CSS inside React components and shared styles
 
 ### Frameworks And Libraries
 
-Confirmed at this stage:
+Confirmed on this branch (`refactor/java-react-postgre`):
 
-- no frontend framework; use plain HTML/CSS/JavaScript
-
-Confirmed:
-
-- Flask for the Python web server and API layer
-- pytest for automated tests
-- Python standard-library `sqlite3` for database access
+- Spring Boot 3.x for the web server and API layer
+- Spring JDBC (`JdbcTemplate`) repositories for database access
+- Flyway for schema migrations
+- React 18 + TypeScript for the frontend, built with Vite
+- JUnit 5 (+ Spring Boot Test) for backend tests; vitest for frontend unit tests
 
 ### Runtime And Tooling
 
 Confirmed:
 
-- local Python runtime
-- browser-based local execution model
-- SQLite local database file
-
-Confirmed:
-
-- Python 3.13+ local runtime
-- `pip` with `requirements.txt` for dependency management
-- `py -m pytest` for automated tests
-- Flask serves static frontend assets from `frontend/`
+- JDK 21+ local runtime; Maven via the `mvnw` wrapper
+- Node.js 24+ / npm for the frontend toolchain
+- PostgreSQL 16+ as a local database service (native install or Docker container)
+- `pom.xml` for backend dependency management; `package.json` for the frontend
+- `./mvnw test` for backend tests; `npm test` (vitest) for frontend tests
+- `npm run build` produces `frontend/dist/`; Spring Boot serves the built assets
+- `server.port=5000` so the local URL stays `http://127.0.0.1:5000`
 
 ### Storage And Infrastructure
 
-- SQLite for persisted Question Bank data
-- local filesystem for project files and database file
+- PostgreSQL for persisted Quiz Bank data (database `quiz_bank`); connection settings
+  come from configuration (e.g. `SPRING_DATASOURCE_URL`) with a documented local default
+- schema versioned by Flyway migrations in `backend/src/main/resources/db/migration/`
 - local web server started manually by the user
 
-No cloud hosting, object storage, queue, cache, or external infrastructure is in scope for V1.
+No cloud hosting, object storage, queue, cache, or hosted services are in scope. A local
+PostgreSQL service (native or Docker) is the one intentionally accepted piece of local
+infrastructure — this supersedes the original "no external infrastructure" constraint
+(see `.devflow/intent/i04-java-react-postgresql.md`).
 
 ### Stack Constraints
 
-- backend must be Python
-- frontend must remain plain HTML/CSS/JavaScript for V1
-- persistence must use SQLite
-- V1 should be runnable locally without external infrastructure
+- backend must be Java 21 + Spring Boot 3 (this branch supersedes the original Python
+  constraint — see `.devflow/intent/i04-java-react-postgresql.md`)
+- frontend is React 18 + TypeScript built with Vite (supersedes plain HTML/CSS/JavaScript)
+- persistence must use PostgreSQL with Flyway migrations (supersedes SQLite), keeping the
+  shared logical schema: `questions` (`option_a..option_d`, `correct`, `difficulty`),
+  `quizzes`, `quiz_questions`, `exam_attempts`, `exam_answers`
+- everything must run on one local machine; no cloud dependency
+- the behavior contract is preserved: same API routes and JSON shapes, same port 5000
 - stack choices should preserve a clean path for later V2/V3 feature expansion

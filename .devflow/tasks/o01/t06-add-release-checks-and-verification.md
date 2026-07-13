@@ -6,7 +6,7 @@
 **Depends On:** o01/t05-build-question-editor-and-delete-flows
 **Complexity:** M
 **Estimated Duration:** 1 hr
-**Status:** verified
+**Status:** completed
 
 ---
 
@@ -23,7 +23,7 @@ This task brings Question Bank V1 to a releaseable baseline by tightening automa
 ### In Scope
 
 * Add or complete the basic automated test coverage required for V1.
-* Verify local startup, SQLite behavior, and Question Bank CRUD/search flows.
+* Verify local startup, PostgreSQL persistence behavior, and Question Bank CRUD/search flows.
 * Document or update the local run/test instructions required for a releaseable V1 demonstration.
 * Confirm out-of-scope features remain excluded.
 
@@ -52,21 +52,21 @@ This task brings Question Bank V1 to a releaseable baseline by tightening automa
 
 ## 4. Inputs
 
-| Artifact | Source |
-| --- | --- |
-| Objective definition | `.devflow/objective/o01-question-bank-v1.md` |
-| Completed Question Bank implementation | `o01/t01` through `o01/t05` |
-| Existing tests and startup flow | repository codebase |
+| Artifact                               | Source                                       |
+| -------------------------------------- | -------------------------------------------- |
+| Objective definition                   | `.devflow/objective/o01-question-bank-v1.md` |
+| Completed Question Bank implementation | `o01/t01` through `o01/t05`                  |
+| Existing tests and startup flow        | repository codebase                          |
 
 ---
 
 ## 5. Outputs
 
-| Artifact | Path |
-| --- | --- |
-| Final V1 automated tests or verification updates | `tests/` |
-| Local startup / test instructions updates | `README.md` or `docs/` as needed |
-| Release-readiness fixes within V1 scope | repository codebase |
+| Artifact                                         | Path                             |
+| ------------------------------------------------ | -------------------------------- |
+| Final V1 automated tests or verification updates | `tests/`                         |
+| Local startup / test instructions updates        | `README.md` or `docs/` as needed |
+| Release-readiness fixes within V1 scope          | repository codebase              |
 
 ---
 
@@ -87,7 +87,7 @@ This task brings Question Bank V1 to a releaseable baseline by tightening automa
 1. Run the documented automated tests.
 2. Start the application from a clean local state.
 3. Verify list, search, add, edit, and delete flows manually in the browser.
-4. Verify SQLite persistence works as intended for V1.
+4. Verify PostgreSQL persistence works as intended for V1.
 5. Review the codebase and UI to confirm out-of-scope features remain unimplemented.
 ```
 

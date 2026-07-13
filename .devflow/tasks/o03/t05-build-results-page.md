@@ -6,7 +6,7 @@
 **Depends On:** o03/t04-build-exam-question-view
 **Complexity:** S
 **Estimated Duration:** 30 min
-**Status:** verified
+**Status:** completed
 
 ---
 
@@ -52,19 +52,19 @@ Render the exam results page using the submit response payload from t04. The pag
 
 ## 4. Inputs
 
-| Artifact                                  | Source                          |
-| ----------------------------------------- | ------------------------------- |
-| Submit response payload in frontend state | `frontend/js/app.js` (from t04) |
-| UI mockup (results layout)                | `.devflow/context/ui-spec.md`   |
-| Existing CSS variables and badge styles   | `frontend/css/app.css`          |
+| Artifact                                  | Source                                              |
+| ----------------------------------------- | --------------------------------------------------- |
+| Submit response payload in frontend state | shared frontend state in `frontend/src/` (from t04) |
+| UI mockup (results layout)                | `.devflow/context/ui-spec.md`                       |
+| Existing CSS variables and badge styles   | `frontend/src/` shared styles                       |
 
 ---
 
 ## 5. Outputs
 
-| Artifact                       | Path                                                                |
-| ------------------------------ | ------------------------------------------------------------------- |
-| Results view added to frontend | `frontend/index.html`, `frontend/js/app.js`, `frontend/css/app.css` |
+| Artifact                       | Path                                    |
+| ------------------------------ | --------------------------------------- |
+| Results view added to frontend | `frontend/src/` (React view/components) |
 
 ---
 
@@ -84,8 +84,8 @@ Render the exam results page using the submit response payload from t04. The pag
 1. Complete an exam (submit via t04 flow).
 2. Verify results page renders with score, counts, and Answer Review.
 3. Confirm at least one correct and one incorrect answer are styled differently.
-4. Click Retry Quiz — confirm exam restarts on the same quiz.
-5. Click Back to Exams — confirm return to Available Exams page.
+4. Click Retry Quiz ??confirm exam restarts on the same quiz.
+5. Click Back to Exams ??confirm return to Available Exams page.
 ```
 
 ---

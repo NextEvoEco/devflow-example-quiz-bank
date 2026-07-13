@@ -10,22 +10,22 @@ Fill this file when the repository contains meaningful code or supporting direct
 
 ## Current Status
 
-The repository includes a fully runnable Quiz Bank implementation covering all three planned versions: Question Bank (V1), Quiz Builder (V2), and Online Exam (V3).
+**This branch (`refactor/java-react-postgre`) contains DevFlow artifacts and docs only —
+no application code yet.** The layout below is the target structure the implementation
+pass must produce. Do not assume `backend/` or `frontend/` exist until then.
 
-### Top-Level Directories
+### Top-Level Directories (target)
 
 - `.devflow/` : DevFlow workflow state, context, templates, roles, skills, and task artifacts
-- `backend/` : Python server, API entrypoints, configuration, and database bootstrap
-- `fixtures/` : manual demo or test content files, such as question-bank seed material prepared for human entry
-- `frontend/` : HTML/CSS/JavaScript client assets
-- `tests/` : automated tests for the local application
-- `docs/` : human-readable supporting documentation such as getting-started, app startup, and verification guidance
-- `data/` : generated at runtime; stores the local SQLite database file
+- `backend/` : Java Spring Boot Maven project (`pom.xml`, `mvnw`, `src/main/java/`, `src/main/resources/db/migration/` for Flyway, `src/test/java/`)
+- `frontend/` : React 18 + TypeScript application (Vite project: `src/`, `package.json`, `vite.config.ts`; `dist/` build output is git-ignored)
+- `docs/` : human-readable supporting documentation (getting-started, setup prerequisites, verification guidance)
 - root markdown files such as `README.md`, `AGENTS.md`, and `CLAUDE.md` : repository bootstrap and usage guidance
 
-### Main Application Areas
+Note: there is no runtime `data/` directory on this branch — persisted data lives in the
+local PostgreSQL service, not in a repository file.
 
-Current meaningful areas:
+### Main Application Areas (target)
 
 - `.devflow/context/` : project context documents
 - `.devflow/intent/` : original request artifacts
@@ -33,20 +33,20 @@ Current meaningful areas:
 - `.devflow/objective/` : confirmed objective artifacts
 - `.devflow/tasks/` : executable task definitions
 - `.devflow/evidence/` : execution and verification records
-- `backend/` : Flask app factory, startup entrypoint, config, SQLite bootstrap, and route modules under `backend/routes/`
-- `backend/exam_repository.py` : exam attempt and answer repository
-- `fixtures/` : reusable question-bank content prepared for manual input or demos
-- `frontend/` : Question Bank, Quiz Builder, and Online Exam pages and JavaScript modules
-- `tests/` : bootstrap, API, repository, page module, and release verification tests for V1–V3
-- `docs/` : startup and verification instructions for all three shipped versions (V1, V2, V3)
+- `backend/src/main/java/` : Spring Boot application, REST controllers, JdbcTemplate repositories, validation
+- `backend/src/main/resources/db/migration/` : Flyway migrations (V1 questions, V2 quizzes, V3 exams)
+- `backend/src/test/java/` : JUnit 5 / Spring Boot tests
+- `frontend/src/` : React views/components (one view per `ui-spec.md` page id), shared state, TypeScript API client, shared styles
+- `docs/` : setup (JDK, PostgreSQL), startup, and verification instructions
 
 ### Generated Or Derived Files
 
 Known generated or runtime-derived items:
 
-- `data/quiz_bank.db` : local SQLite database file
-- Python cache directories such as `__pycache__/`
-- `.pytest_cache/` when tests are run
+- `backend/target/` : Maven build output (git-ignored)
+- `frontend/node_modules/` : npm dependencies (git-ignored)
+- `frontend/dist/` : Vite build output served by Spring Boot (git-ignored)
+- persisted data lives in the local PostgreSQL service (database `quiz_bank`), outside the repository
 
 ### Safe Edit Areas
 
@@ -69,12 +69,13 @@ Typical safe edit areas:
 - `.devflow/status.md` because it controls resume state
 - `.devflow/memory.md` because it stores durable cross-session facts
 - `.devflow/context/ui-spec.md` because it is the approved target UI context and may intentionally be ahead of the live code
-- `data/quiz_bank.db` and other generated runtime files
+- generated build outputs (`backend/target/`, `frontend/dist/`) and the local PostgreSQL data
 
 ## Interpretation Rule
 
 When navigating this repository:
 
 - `ui-spec.md` may describe target product scope ahead of implementation
-- `backend/`, `frontend/`, and `tests/` show the current shipped code
+- `backend/` and `frontend/` show the current shipped code once the implementation pass
+  has run — on this branch they do not exist yet
 - `status.md` tells you which slice is currently active for execution

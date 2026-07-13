@@ -6,7 +6,7 @@
 **Depends On:** none
 **Complexity:** S
 **Estimated Duration:** 30 min
-**Status:** verified
+**Status:** completed
 
 ---
 
@@ -23,7 +23,7 @@ Add the Online Exam section to the application: a sidebar navigation entry and a
 * Add "Online Exam" entry to the sidebar navigation.
 * Implement the Available Exams page view (shown when Online Exam nav is active).
 * Fetch quizzes from `GET /api/quizzes` and render each as a card: title, description, question count, Start Exam button.
-* Start Exam button sets up state for the in-exam view (can navigate to exam view or set `currentView` — the exam view itself is built in t04).
+* Start Exam button sets up state for the in-exam view (can navigate to exam view or set `currentView` ??the exam view itself is built in t04).
 * Match the approved UI mockup layout for the Available Exams page.
 
 ### Out of Scope
@@ -51,20 +51,20 @@ Add the Online Exam section to the application: a sidebar navigation entry and a
 
 ## 4. Inputs
 
-| Artifact                               | Source                                      |
-| -------------------------------------- | ------------------------------------------- |
-| Existing sidebar and nav pattern       | `frontend/index.html`, `frontend/js/app.js` |
-| Existing CSS variables and card styles | `frontend/css/app.css`                      |
-| UI mockup (Available Exams layout)     | `.devflow/context/ui-spec.md`               |
-| Existing quiz list endpoint            | `GET /api/quizzes`                          |
+| Artifact                               | Source                                           |
+| -------------------------------------- | ------------------------------------------------ |
+| Existing sidebar and nav pattern       | `frontend/src/` (React app shell and navigation) |
+| Existing CSS variables and card styles | `frontend/src/` shared styles / design tokens    |
+| UI mockup (Available Exams layout)     | `.devflow/context/ui-spec.md`                    |
+| Existing quiz list endpoint            | `GET /api/quizzes`                               |
 
 ---
 
 ## 5. Outputs
 
-| Artifact                                                       | Path                                                                |
-| -------------------------------------------------------------- | ------------------------------------------------------------------- |
-| Updated frontend with Online Exam nav and Available Exams view | `frontend/index.html`, `frontend/js/app.js`, `frontend/css/app.css` |
+| Artifact                                                       | Path                                                        |
+| -------------------------------------------------------------- | ----------------------------------------------------------- |
+| Updated frontend with Online Exam nav and Available Exams view | `frontend/src/` (React views/components, navigation wiring) |
 
 ---
 
@@ -83,10 +83,10 @@ Add the Online Exam section to the application: a sidebar navigation entry and a
 
 ```
 1. Start the app.
-2. Click "Online Exam" in the sidebar — Available Exams page renders.
+2. Click "Online Exam" in the sidebar ??Available Exams page renders.
 3. Confirm quiz cards match existing quiz data.
-4. Click Start Exam on one card — UI moves toward the exam view (placeholder acceptable for this task).
-5. Navigate to Question Bank and Quiz Builder — confirm no regressions.
+4. Click Start Exam on one card ??UI moves toward the exam view (placeholder acceptable for this task).
+5. Navigate to Question Bank and Quiz Builder ??confirm no regressions.
 ```
 
 ---

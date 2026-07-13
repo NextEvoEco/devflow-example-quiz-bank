@@ -6,7 +6,7 @@
 **Depends On:** o03/t02-implement-exam-api, o03/t03-build-available-exams-page
 **Complexity:** M
 **Estimated Duration:** 1 hr
-**Status:** verified
+**Status:** completed
 
 ---
 
@@ -27,7 +27,7 @@ Implement the in-exam experience: create an attempt when the user starts an exam
 * On option select: call `PUT /api/exams/attempts/{attempt_id}/answers/{question_id}` immediately; highlight selected option.
 * Previously selected answers are restored when navigating back to a question.
 * Submit button (visible throughout or on last question): call `POST /api/exams/attempts/{attempt_id}/submit` and pass the response to the results view.
-* If the user navigates away from Online Exam before submitting, the in-progress attempt is abandoned (no cleanup API call needed — it stays unscored in the DB).
+* If the user navigates away from Online Exam before submitting, the in-progress attempt is abandoned (no cleanup API call needed ??it stays unscored in the DB).
 
 ### Out of Scope
 
@@ -55,19 +55,19 @@ Implement the in-exam experience: create an attempt when the user starts an exam
 
 ## 4. Inputs
 
-| Artifact                                       | Source                               |
-| ---------------------------------------------- | ------------------------------------ |
-| Exam API (attempts, answers, submit)           | `backend/routes/exams.py` (from t02) |
-| Available Exams page and `currentQuizId` state | `frontend/js/app.js` (from t03)      |
-| UI mockup (in-exam layout)                     | `.devflow/context/ui-spec.md`        |
+| Artifact                                       | Source                                              |
+| ---------------------------------------------- | --------------------------------------------------- |
+| Exam API (attempts, answers, submit)           | `backend/routes/exams.py` (from t02)                |
+| Available Exams page and `currentQuizId` state | shared frontend state in `frontend/src/` (from t03) |
+| UI mockup (in-exam layout)                     | `.devflow/context/ui-spec.md`                       |
 
 ---
 
 ## 5. Outputs
 
-| Artifact                       | Path                                                                |
-| ------------------------------ | ------------------------------------------------------------------- |
-| In-exam view added to frontend | `frontend/index.html`, `frontend/js/app.js`, `frontend/css/app.css` |
+| Artifact                       | Path                                    |
+| ------------------------------ | --------------------------------------- |
+| In-exam view added to frontend | `frontend/src/` (React view/components) |
 
 ---
 
@@ -89,9 +89,9 @@ Implement the in-exam experience: create an attempt when the user starts an exam
 1. Start the app and open Online Exam.
 2. Click Start Exam on any quiz.
 3. Verify the first question loads with four option buttons.
-4. Select an option — confirm it is highlighted and the answer API is called (check network tab).
-5. Click Next and Previous — confirm navigation and answer restoration.
-6. Click Submit — confirm the submit API is called and the view transitions.
+4. Select an option ??confirm it is highlighted and the answer API is called (check network tab).
+5. Click Next and Previous ??confirm navigation and answer restoration.
+6. Click Submit ??confirm the submit API is called and the view transitions.
 ```
 
 ---

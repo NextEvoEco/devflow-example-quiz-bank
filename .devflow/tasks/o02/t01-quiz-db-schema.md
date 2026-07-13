@@ -6,13 +6,13 @@
 **Depends On:** none
 **Complexity:** S
 **Estimated Duration:** 30 min
-**Status:** verified
+**Status:** completed
 
 ---
 
 ## 1. Purpose
 
-Extend the SQLite database with two new tables — `quizzes` and `quiz_questions` — to support quiz storage and ordered question references. After this task, the persistence layer is ready for the Quiz API to build on.
+Extend the PostgreSQL schema (via a new Flyway migration) with two new tables ??`quizzes` and `quiz_questions` ??to support quiz storage and ordered question references. After this task, the persistence layer is ready for the Quiz API to build on.
 
 ---
 
@@ -77,9 +77,9 @@ Extend the SQLite database with two new tables — `quizzes` and `quiz_questions
 ## 7. Test Plan
 
 ```
-py -m pytest tests/ -v
+./mvnw test
 # verify existing tests still pass
-# manually inspect schema via SQLite if needed
+# manually inspect schema via psql if needed
 ```
 
 ---

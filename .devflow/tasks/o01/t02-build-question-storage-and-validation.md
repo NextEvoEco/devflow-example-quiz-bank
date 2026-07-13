@@ -6,7 +6,7 @@
 **Depends On:** o01/t01-bootstrap-local-web-app
 **Complexity:** M
 **Estimated Duration:** 1 hr
-**Status:** verified
+**Status:** completed
 
 ---
 
@@ -14,7 +14,7 @@
 
 > What does this task accomplish within the objective?
 
-This task creates the Question Bank data model, SQLite persistence layer, and validation rules so API and UI work can rely on a single source of truth for question behavior.
+This task creates the Question Bank data model, PostgreSQL persistence layer, and validation rules so API and UI work can rely on a single source of truth for question behavior.
 
 ---
 
@@ -22,7 +22,7 @@ This task creates the Question Bank data model, SQLite persistence layer, and va
 
 ### In Scope
 
-* Define the Question entity and SQLite schema for V1.
+* Define the Question entity and PostgreSQL schema (Flyway migration) for V1.
 * Implement create, read, update, delete, and search persistence operations for questions.
 * Implement validation rules for question text, options A-D, correct answer, and difficulty defaults.
 * Define error behavior for invalid question payloads at the domain or service layer.
@@ -52,21 +52,21 @@ This task creates the Question Bank data model, SQLite persistence layer, and va
 
 ## 4. Inputs
 
-| Artifact | Source |
-| --- | --- |
-| Objective definition | `.devflow/objective/o01-question-bank-v1.md` |
-| Bootstrap app structure | `o01/t01-bootstrap-local-web-app` |
-| Question data model guidance | `.devflow/context/ui-spec.md` |
+| Artifact                     | Source                                       |
+| ---------------------------- | -------------------------------------------- |
+| Objective definition         | `.devflow/objective/o01-question-bank-v1.md` |
+| Bootstrap app structure      | `o01/t01-bootstrap-local-web-app`            |
+| Question data model guidance | `.devflow/context/ui-spec.md`                |
 
 ---
 
 ## 5. Outputs
 
-| Artifact | Path |
-| --- | --- |
-| Question model, storage, and validation code | `backend/` |
-| SQLite schema or migration bootstrap updates | `backend/` |
-| Automated tests for validation/storage behavior | `tests/` |
+| Artifact                                        | Path                                       |
+| ----------------------------------------------- | ------------------------------------------ |
+| Question model, storage, and validation code    | `backend/`                                 |
+| Flyway migration updates                        | `backend/src/main/resources/db/migration/` |
+| Automated tests for validation/storage behavior | `tests/`                                   |
 
 ---
 
@@ -84,7 +84,7 @@ This task creates the Question Bank data model, SQLite persistence layer, and va
 
 ```text
 1. Run automated tests for the question storage and validation layer.
-2. Verify CRUD and search operations against SQLite.
+2. Verify CRUD and search operations against PostgreSQL.
 3. Verify invalid payloads fail with explicit validation errors.
 4. Verify omitted difficulty is replaced with the default value.
 ```

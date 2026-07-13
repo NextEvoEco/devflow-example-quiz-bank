@@ -16,7 +16,7 @@ Leave it blank in the starter repository.
 
 **Project Type:** Local web application
 
-**Project Description:** A lightweight Quiz Bank application used to demonstrate the DevFlow workflow. V1 focuses on Question Bank CRUD with a Python backend, plain HTML/CSS/JavaScript frontend, and SQLite persistence.
+**Project Description:** A lightweight Quiz Bank application used to demonstrate the DevFlow workflow. On this branch (`refactor/java-react-postgre`) the stack is a Java 21 + Spring Boot 3 backend, a React 18 + TypeScript frontend built with Vite, and PostgreSQL persistence (Flyway migrations). Scope spans V1 Question Bank CRUD, V2 Quiz Builder, and V3 Online Exam.
 
 **Target Users:** Educators and learners using a local demo application
 

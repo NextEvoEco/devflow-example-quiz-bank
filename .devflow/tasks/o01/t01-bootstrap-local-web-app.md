@@ -6,7 +6,7 @@
 **Depends On:** none
 **Complexity:** M
 **Estimated Duration:** 1 hr
-**Status:** verified
+**Status:** completed
 
 ---
 
@@ -22,10 +22,10 @@ This task establishes the runnable project foundation for Quiz Bank V1 so later 
 
 ### In Scope
 
-* Create the initial Python application structure for a local web app.
-* Choose and wire a lightweight Python server stack suitable for serving API endpoints and static frontend assets.
+* Create the initial Java application structure (Spring Boot 3, Maven project) for a local web app.
+* Wire a lightweight Spring Boot server setup suitable for serving API endpoints and the built React frontend assets (Vite `dist/` output) on port 5000.
 * Create the base repository code layout for backend, frontend, and tests.
-* Initialize SQLite database creation/bootstrap behavior for first run.
+* Initialize the PostgreSQL schema via Flyway migrations on first start.
 * Provide a minimal runnable app shell so the application can start locally.
 
 ### Out of Scope
@@ -41,7 +41,7 @@ This task establishes the runnable project foundation for Quiz Bank V1 so later 
 ### Must
 
 * Keep the implementation intentionally lightweight.
-* Use Python and SQLite.
+* Use Java 21 + Spring Boot 3 and PostgreSQL (Flyway migrations).
 * Produce a startup flow that a later task can extend without restructuring the repository again.
 
 ### Must Not
@@ -53,23 +53,23 @@ This task establishes the runnable project foundation for Quiz Bank V1 so later 
 
 ## 4. Inputs
 
-| Artifact | Source |
-| --- | --- |
-| Objective definition | `.devflow/objective/o01-question-bank-v1.md` |
-| UI context | `.devflow/context/ui-spec.md` |
-| Repository structure guidance | `.devflow/context/repo-structure.md` |
+| Artifact                      | Source                                       |
+| ----------------------------- | -------------------------------------------- |
+| Objective definition          | `.devflow/objective/o01-question-bank-v1.md` |
+| UI context                    | `.devflow/context/ui-spec.md`                |
+| Repository structure guidance | `.devflow/context/repo-structure.md`         |
 
 ---
 
 ## 5. Outputs
 
-| Artifact | Path |
-| --- | --- |
-| Python app bootstrap and server entrypoint | `backend/` |
-| Frontend static shell files | `frontend/` |
-| SQLite bootstrap or initialization layer | `backend/` |
-| Basic startup instructions update | `README.md` or `docs/` as needed |
-| Test directory bootstrap | `tests/` |
+| Artifact                                        | Path                                         |
+| ----------------------------------------------- | -------------------------------------------- |
+| Spring Boot app bootstrap and server entrypoint | `backend/` (Maven project, `src/main/java/`) |
+| Frontend static shell files                     | `frontend/`                                  |
+| Flyway migration baseline                       | `backend/src/main/resources/db/migration/`   |
+| Basic startup instructions update               | `README.md` or `docs/` as needed             |
+| Test directory bootstrap                        | `tests/`                                     |
 
 ---
 
@@ -78,18 +78,18 @@ This task establishes the runnable project foundation for Quiz Bank V1 so later 
 > These criteria must all pass before the task is marked complete.
 
 * [x] The repository has a stable local app structure for backend, frontend, and tests.
-* [x] The application can be started by a Python command and serve at least a minimal page successfully.
-* [x] SQLite initialization runs on first start without requiring manual database setup.
+* [x] The application can be started by the documented Maven command (`./mvnw spring-boot:run`) and serve at least a minimal page successfully.
+* [x] Flyway migrates the PostgreSQL schema on first start without manual schema setup (a reachable local PostgreSQL service is a documented prerequisite).
 
 ---
 
 ## 7. Test Plan
 
 ```text
-1. Start the local application with the documented Python command.
+1. Start the local application with the documented Maven command.
 2. Verify the server starts without crashing.
 3. Open the app in a browser and confirm a minimal shell page is served.
-4. Verify the SQLite database file or schema is initialized automatically.
+4. Verify the PostgreSQL schema is migrated automatically by Flyway.
 ```
 
 ---

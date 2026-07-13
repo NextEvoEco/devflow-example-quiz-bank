@@ -6,7 +6,7 @@
 **Depends On:** o02/t02-quiz-api
 **Complexity:** S
 **Estimated Duration:** 45 min
-**Status:** verified
+**Status:** completed
 
 ---
 
@@ -84,7 +84,7 @@ Add a Quiz List page to the frontend so users can browse all saved quizzes and n
 ## 7. Test Plan
 
 ```
-py -m backend
+npm run build && ./mvnw spring-boot:run
 # open browser, navigate to Quiz List page
 # verify list loads, delete works, create/edit buttons navigate correctly
 ```
@@ -93,4 +93,4 @@ py -m backend
 
 ## 8. Notes
 
-Keep the page consistent with the Question Bank UI style. No new CSS framework — use the existing stylesheet.
+Keep the page consistent with the Question Bank UI style. No new CSS framework ??use the existing stylesheet.

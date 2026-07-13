@@ -6,7 +6,7 @@
 **Depends On:** o03/t01-add-exam-attempts-schema
 **Complexity:** M
 **Estimated Duration:** 45 min
-**Status:** verified
+**Status:** completed
 
 ---
 
@@ -20,10 +20,10 @@ Expose the exam flow through REST API endpoints: starting an attempt, saving an 
 
 ### In Scope
 
-* `POST /api/exams/attempts` — create a new attempt for a given `quiz_id`; return `attempt_id`.
-* `PUT /api/exams/attempts/{attempt_id}/answers/{question_id}` — save or update one answer; return 204.
-* `POST /api/exams/attempts/{attempt_id}/submit` — score and persist the attempt; return score summary.
-* Register the new blueprint in `backend/app.py`.
+* `POST /api/exams/attempts` ??create a new attempt for a given `quiz_id`; return `attempt_id`.
+* `PUT /api/exams/attempts/{attempt_id}/answers/{question_id}` ??save or update one answer; return 204.
+* `POST /api/exams/attempts/{attempt_id}/submit` ??score and persist the attempt; return score summary.
+* Register the new controller in the Spring Boot application (`backend/src/main/java/`).
 * API-level tests covering the happy path and basic error cases (invalid quiz_id, invalid attempt_id, submitting an already-submitted attempt).
 
 ### Out of Scope
@@ -62,11 +62,11 @@ Expose the exam flow through REST API endpoints: starting an attempt, saving an 
 
 ## 5. Outputs
 
-| Artifact                 | Path                      |
-| ------------------------ | ------------------------- |
-| Exam routes blueprint    | `backend/routes/exams.py` |
-| Updated app registration | `backend/app.py`          |
-| API tests                | `tests/test_exam_api.py`  |
+| Artifact              | Path                      |
+| --------------------- | ------------------------- |
+| Exam routes blueprint | `backend/routes/exams.py` |
+| Updated app wiring    | `backend/src/main/java/`  |
+| API tests             | `tests/test_exam_api.py`  |
 
 ---
 
@@ -84,8 +84,8 @@ Expose the exam flow through REST API endpoints: starting an attempt, saving an 
 ## 7. Test Plan
 
 ```
-pytest tests/test_exam_api.py -v
-pytest tests/ -v  # full regression
+./mvnw test -Dtest='*ExamApi*'
+./mvnw test  # full regression
 ```
 
 ---

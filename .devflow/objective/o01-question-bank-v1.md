@@ -27,10 +27,10 @@ The approved UI specification already defines a broader application that include
 
 This objective also establishes the initial technical foundation for later versions:
 
-- Python backend
-- plain HTML/CSS/JavaScript frontend
-- SQLite data storage
-- local web app delivery model
+- Java 21 + Spring Boot 3 backend (this branch; supersedes Python)
+- React 18 + TypeScript frontend, built with Vite (supersedes plain HTML/CSS/JavaScript)
+- PostgreSQL data storage with Flyway migrations (supersedes SQLite)
+- local web app delivery model (Spring Boot server on port 5000)
 
 ---
 
@@ -38,9 +38,9 @@ This objective also establishes the initial technical foundation for later versi
 
 ### In Scope
 
-* Build a local web application started by a Python server.
+* Build a local web application started by a Spring Boot server (port 5000).
 * Implement Question Bank list, search, add, edit, and delete flows.
-* Store question data in SQLite.
+* Store question data in PostgreSQL (schema managed by Flyway).
 * Apply the approved UI specification for the Question Bank portion of the application.
 * Include basic validation, basic error handling, and basic automated tests.
 * Start with an empty question bank on first run.
@@ -58,8 +58,8 @@ This objective also establishes the initial technical foundation for later versi
 
 | Type       | Constraint                                                                                                             |
 | ---------- | ---------------------------------------------------------------------------------------------------------------------- |
-| Platform   | Local web application started by a Python server                                                                       |
-| Tech Stack | Python backend, plain HTML/CSS/JavaScript frontend, SQLite database                                                    |
+| Platform   | Local web application started by a Spring Boot server (port 5000)                                                      |
+| Tech Stack | Java 21 + Spring Boot 3 backend, React 18 + TypeScript frontend (Vite), PostgreSQL database (Flyway)                   |
 | Trigger    | Manual local startup by the user                                                                                       |
 | Output     | A releaseable V1 Question Bank app that can be independently run and demonstrated                                      |
 | Other      | Use the approved UI design, remain intentionally lightweight, and preserve a foundation for future V2 and V3 expansion |
@@ -70,11 +70,11 @@ This objective also establishes the initial technical foundation for later versi
 
 > How will we know this objective is complete?
 
-* [x] The application can be started locally and used through a browser as a Question Bank web app.
-* [x] Users can list, search, add, edit, and delete questions, with data stored in SQLite.
-* [x] Question validation is enforced for question text, options A-D, and correct answer, and difficulty has a default value.
-* [x] The V1 implementation excludes Quiz Builder and Online Exam features while keeping the codebase extendable for later versions.
-* [x] Basic automated tests and basic error handling are present for the V1 scope.
+* [ ] The application can be started locally and used through a browser as a Question Bank web app.
+* [ ] Users can list, search, add, edit, and delete questions, with data stored in PostgreSQL.
+* [ ] Question validation is enforced for question text, options A-D, and correct answer, and difficulty has a default value.
+* [ ] The V1 implementation excludes Quiz Builder and Online Exam features while keeping the codebase extendable for later versions.
+* [ ] Basic automated tests and basic error handling are present for the V1 scope.
 
 ---
 

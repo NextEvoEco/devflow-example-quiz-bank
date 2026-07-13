@@ -6,13 +6,13 @@
 **Depends On:** o02/t04-quiz-builder-page
 **Complexity:** S
 **Estimated Duration:** 45 min
-**Status:** complete
+**Status:** completed
 
 ---
 
 ## 1. Purpose
 
-Add a Quiz Preview view that displays the full content of a quiz — each question's text, options A–D, and correct answer — in the order defined by the user. After this task, users can review a complete quiz before or after saving.
+Add a Quiz Preview view that displays the full content of a quiz ??each question's text, options A?�D, and correct answer ??in the order defined by the user. After this task, users can review a complete quiz before or after saving.
 
 ---
 
@@ -21,7 +21,7 @@ Add a Quiz Preview view that displays the full content of a quiz — each questi
 ### In Scope
 
 - Preview panel or page that shows all questions in quiz order
-- Each question entry displays: question text, options A–D, correct answer indicator
+- Each question entry displays: question text, options A?�D, correct answer indicator
 - Preview is accessible from the "Preview" button in the Quiz Builder (t04)
 - Preview can display an unsaved (in-memory) quiz state as well as a saved quiz
 
@@ -69,7 +69,7 @@ Add a Quiz Preview view that displays the full content of a quiz — each questi
 
 - [x] Clicking "Preview" in the Quiz Builder opens the preview
 - [x] All selected questions are shown in order
-- [x] Each question displays text, options A–D, and the correct answer
+- [x] Each question displays text, options A?�D, and the correct answer
 - [x] Preview reflects the current in-builder question order (including unsaved changes)
 - [x] User can close/dismiss the preview and return to the builder
 
@@ -78,7 +78,7 @@ Add a Quiz Preview view that displays the full content of a quiz — each questi
 ## 7. Test Plan
 
 ```
-py -m backend
+npm run build && ./mvnw spring-boot:run
 # open Quiz Builder, select 3+ questions, reorder them
 # click Preview: verify all questions appear in the correct order with options and correct answer shown
 # change order in builder, re-open preview: verify order updated

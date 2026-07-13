@@ -45,9 +45,11 @@ These conventions are confirmed from the DevFlow workflow, interview, objective,
 
 ### Conventions That Must Not Be Broken
 
-- backend must be Python
-- frontend must be plain HTML/CSS/JavaScript for V1
-- persistence must use SQLite
+- backend must be Java 21 + Spring Boot 3 (this branch; supersedes the original Python
+  convention — see `.devflow/intent/i04-java-react-postgresql.md`)
+- frontend must be React 18 + TypeScript built with Vite (supersedes plain HTML/CSS/JavaScript)
+- persistence must use PostgreSQL with Flyway migrations, keeping the shared logical
+  schema (supersedes SQLite)
 - V1 scope must remain limited to Question Bank CRUD and search
 - question text, options A-D, and correct answer must be validated
 - difficulty must have a default value

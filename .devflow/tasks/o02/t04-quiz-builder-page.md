@@ -6,7 +6,7 @@
 **Depends On:** o02/t03-quiz-list-page
 **Complexity:** L
 **Estimated Duration:** 2 hr
-**Status:** complete
+**Status:** completed
 
 ---
 
@@ -96,7 +96,7 @@ Implement the Quiz Builder page where users can create or edit a quiz: enter a n
 ## 7. Test Plan
 
 ```
-py -m backend
+npm run build && ./mvnw spring-boot:run
 # open browser, navigate to Quiz Builder
 # create a quiz: enter name, add 3+ questions, reorder, save
 # verify quiz appears in Quiz List

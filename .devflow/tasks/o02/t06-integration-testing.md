@@ -6,7 +6,7 @@
 **Depends On:** o02/t05-quiz-preview
 **Complexity:** M
 **Estimated Duration:** 1 hr
-**Status:** complete
+**Status:** completed
 
 ---
 
@@ -54,7 +54,7 @@ Verify that the full Quiz Builder V1 feature works end-to-end and that no existi
 | Artifact                | Source               |
 | ----------------------- | -------------------- |
 | Quiz Preview page (t05) | o02/t05-quiz-preview |
-| All prior o02 tasks     | o02/t01–t05          |
+| All prior o02 tasks     | o02/t01?�t05          |
 | Existing test suite     | `tests/`             |
 
 ---
@@ -70,9 +70,9 @@ Verify that the full Quiz Builder V1 feature works end-to-end and that no existi
 
 ## 6. Acceptance Criteria
 
-- [x] `py -m pytest tests/ -v` passes with no failures
+- [x] `./mvnw test` passes with no failures
 - [x] Quiz API tests cover: create, list, get, update, delete, and the min-3 validation rejection
-- [x] Manual walkthrough completed: create → reorder → preview → save → edit → delete
+- [x] Manual walkthrough completed: create ??reorder ??preview ??save ??edit ??delete
 - [x] Question Bank CRUD and search flows are unaffected
 - [x] Evidence artifact written with test results and walkthrough notes
 
@@ -81,8 +81,8 @@ Verify that the full Quiz Builder V1 feature works end-to-end and that no existi
 ## 7. Test Plan
 
 ```
-py -m pytest tests/ -v
-py -m backend
+./mvnw test
+npm run build && ./mvnw spring-boot:run
 # manual walkthrough in browser:
 # 1. create quiz with 3 questions, verify save succeeds
 # 2. attempt save with 2 questions, verify error shown

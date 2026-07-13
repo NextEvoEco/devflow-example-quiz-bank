@@ -7,6 +7,18 @@
 
 ---
 
+> **Branch note (`refactor/java-react-postgre`):** the stack decisions recorded below are
+> **superseded on this branch** by `.devflow/intent/i04-java-react-postgresql.md` — all
+> three layers change: frontend (Q5/A5 plain HTML/CSS/JavaScript → React 18 + TypeScript
+> with Vite), persistence (Q6/A6 SQLite → PostgreSQL via Flyway), backend (Q7/A7 Python →
+> Java 21 + Spring Boot 3), and delivery (Q10/A10 "started by a Python server" → started
+> by a Spring Boot server; still a normal local web app on port 5000). The original
+> "no external infrastructure" expectation is intentionally relaxed: PostgreSQL runs as a
+> local service or Docker container. The answers below are kept unchanged as the
+> historical record of the original interview.
+
+---
+
 ## 1. Goal Of This Interview
 
 > What uncertainty is this interview trying to remove?
@@ -62,9 +74,11 @@ This interview clarifies the first implementation boundary for the Quiz Bank exa
 - The first objective scope is limited to Question Bank.
 - The first objective should result in something independently executable and usable.
 - V1 to V3 should mainly expand by feature scope, while each version remains releaseable.
-- The front-end stack is plain HTML/CSS/JavaScript.
-- The data layer should use SQLite.
-- The backend stack is Python.
+- The front-end stack is React 18 + TypeScript, built with Vite (this branch supersedes
+  the originally confirmed plain HTML/CSS/JavaScript — see branch note above).
+- The data layer uses PostgreSQL with Flyway migrations (supersedes SQLite; requires a
+  local PostgreSQL service or Docker container — see branch note above).
+- The backend stack is Java 21 + Spring Boot 3 (supersedes Python — see branch note above).
 - V1 scope is limited to Question Bank CRUD and search.
 - V1 must include basic validation, error handling, and basic automated tests.
 - V1 should be delivered as a normal local web app.

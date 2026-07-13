@@ -68,8 +68,9 @@ Each version introduces additional DevFlow artifacts while keeping the applicati
 docs/
     Supporting documentation
 
-src/
-    Application source code
+backend/            (implementation pass) Java 21 + Spring Boot 3 Maven project:
+                    REST API, JdbcTemplate repositories, Flyway migrations, JUnit tests
+frontend/           (implementation pass) React 18 + TypeScript app built with Vite
 ```
 
 ---
@@ -125,14 +126,43 @@ This repository focuses on demonstrating how DevFlow is applied in practice.
 
 # Status
 
-Current Version
+**Branch `refactor/java-react-postgre`** — tech-stack refactor branch
+(see `docs/tech-stack.md` and `.devflow/intent/i04-java-react-postgresql.md`).
 
-* V1 — Question Bank (In Progress)
+Target stack: **Java 21 + Spring Boot 3** backend, **React 18 + TypeScript (Vite)**
+frontend, **PostgreSQL (Flyway)** database.
 
-Planned Versions
+### Prerequisites
 
-* V2 — Quiz Builder
-* V3 — Online Exam
+See [docs/installation-guide.md](docs/installation-guide.md): JDK 21+, Node.js 24+/npm 11+,
+PostgreSQL 16+ with database `quiz_bank` and role `quiz`/`quiz`.
+
+### Start the app
+
+```powershell
+cd frontend
+npm install
+npm run build
+
+cd ..\backend
+.\mvnw spring-boot:run
+```
+
+Open `http://127.0.0.1:5000`.
+
+### Tests
+
+```powershell
+cd backend;  .\mvnw test
+cd frontend; npm test
+```
+
+### Current delivery
+
+* V1 Question Bank — implemented (list/search/add/edit/delete)
+* V2 Quiz Builder — implemented (list/create/edit/preview/delete)
+* V3 Online Exam — implemented (attempt/answer/submit/results)
+
 
 ---
 

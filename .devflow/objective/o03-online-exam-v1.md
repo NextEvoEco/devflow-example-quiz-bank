@@ -61,7 +61,7 @@ This objective implements that flow while keeping all existing Question Bank and
 | Type       | Constraint                                                                                      |
 | ---------- | ----------------------------------------------------------------------------------------------- |
 | Platform   | Local web application, same runtime as V1 and V2                                                |
-| Tech Stack | Python backend, plain HTML/CSS/JavaScript frontend, SQLite database                             |
+| Tech Stack | Java 21 + Spring Boot 3 backend, React 18 + TypeScript frontend (Vite), PostgreSQL database     |
 | Trigger    | Manual local startup by the user                                                                |
 | Output     | A releaseable V3 Online Exam module integrated into the existing Quiz Bank application          |
 | Other      | Must not break existing Question Bank or Quiz Builder modules; follow approved UI specification |

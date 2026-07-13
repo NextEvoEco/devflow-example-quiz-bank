@@ -6,13 +6,13 @@
 **Depends On:** none
 **Complexity:** S
 **Estimated Duration:** 30 min
-**Status:** verified
+**Status:** completed
 
 ---
 
 ## 1. Purpose
 
-Add the database schema for exam attempts and a repository layer to create and read attempts. This task produces no UI and no API routes — only the persistence foundation that later tasks will build on.
+Add the database schema for exam attempts and a repository layer to create and read attempts. This task produces no UI and no API routes ??only the persistence foundation that later tasks will build on.
 
 ---
 
@@ -24,7 +24,7 @@ Add the database schema for exam attempts and a repository layer to create and r
 * Add migration for `exam_answers` table (id, attempt_id, question_id, selected_option).
 * Add `ExamAttempt` and `ExamAnswer` model dataclasses.
 * Add `ExamAttemptRepository` with methods: `create_attempt`, `save_answer`, `get_attempt_with_answers`, `submit_attempt`.
-* Unit tests for the repository layer using a temporary in-memory SQLite database.
+* Repository-layer tests against a disposable PostgreSQL test database (e.g. Testcontainers or a dedicated test schema).
 
 ### Out of Scope
 
@@ -38,7 +38,7 @@ Add the database schema for exam attempts and a repository layer to create and r
 
 ### Must
 
-* Follow the existing migration pattern in `backend/database.py`.
+* Follow the existing Flyway migration pattern in `backend/src/main/resources/db/migration/`.
 * Increment `SCHEMA_VERSION` correctly.
 * Keep `exam_answers.selected_option` nullable to allow unanswered questions at submit time.
 * A submitted attempt must record `submitted_at` and `score`; a pending attempt has both as NULL.
@@ -52,23 +52,23 @@ Add the database schema for exam attempts and a repository layer to create and r
 
 ## 4. Inputs
 
-| Artifact                    | Source                                     |
-| --------------------------- | ------------------------------------------ |
-| Existing migration pattern  | `backend/database.py`                      |
-| Existing model pattern      | `backend/models.py`                        |
-| Existing repository pattern | `backend/question_repository.py`           |
-| Objective scope             | `.devflow/objective/o03-online-exam-v1.md` |
+| Artifact                    | Source                                                   |
+| --------------------------- | -------------------------------------------------------- |
+| Existing migration pattern  | `backend/src/main/resources/db/migration/`               |
+| Existing model pattern      | backend Java records/entities (`backend/src/main/java/`) |
+| Existing repository pattern | `backend/question_repository.py`                         |
+| Objective scope             | `.devflow/objective/o03-online-exam-v1.md`               |
 
 ---
 
 ## 5. Outputs
 
-| Artifact                    | Path                            |
-| --------------------------- | ------------------------------- |
-| Updated schema migrations   | `backend/database.py`           |
-| New model dataclasses       | `backend/models.py`             |
-| New exam attempt repository | `backend/exam_repository.py`    |
-| Repository unit tests       | `tests/test_exam_repository.py` |
+| Artifact                    | Path                                       |
+| --------------------------- | ------------------------------------------ |
+| New Flyway migration        | `backend/src/main/resources/db/migration/` |
+| New model records/entities  | `backend/src/main/java/`                   |
+| New exam attempt repository | `backend/exam_repository.py`               |
+| Repository unit tests       | `tests/test_exam_repository.py`            |
 
 ---
 
@@ -87,8 +87,8 @@ Add the database schema for exam attempts and a repository layer to create and r
 ## 7. Test Plan
 
 ```
-pytest tests/test_exam_repository.py -v
-python -m backend  # verify app still starts and existing tables intact
+./mvnw test -Dtest='*ExamRepository*'
+./mvnw spring-boot:run  # verify app still starts and existing tables intact
 ```
 
 ---

@@ -6,7 +6,7 @@
 **Depends On:** o01/t04-build-question-bank-list-page
 **Complexity:** L
 **Estimated Duration:** 90 min
-**Status:** verified
+**Status:** completed
 
 ---
 
@@ -52,21 +52,21 @@ This task completes the interactive Question Bank V1 user flows by implementing 
 
 ## 4. Inputs
 
-| Artifact | Source |
-| --- | --- |
-| Objective definition | `.devflow/objective/o01-question-bank-v1.md` |
-| Question Bank API | `o01/t03-implement-question-bank-api` |
-| Question Bank list page | `o01/t04-build-question-bank-list-page` |
-| UI interaction guidance | `.devflow/context/ui-spec.md` |
+| Artifact                | Source                                       |
+| ----------------------- | -------------------------------------------- |
+| Objective definition    | `.devflow/objective/o01-question-bank-v1.md` |
+| Question Bank API       | `o01/t03-implement-question-bank-api`        |
+| Question Bank list page | `o01/t04-build-question-bank-list-page`      |
+| UI interaction guidance | `.devflow/context/ui-spec.md`                |
 
 ---
 
 ## 5. Outputs
 
-| Artifact | Path |
-| --- | --- |
+| Artifact                                                | Path        |
+| ------------------------------------------------------- | ----------- |
 | Question editor and delete-flow frontend implementation | `frontend/` |
-| Integration or UI-flow tests | `tests/` |
+| Integration or UI-flow tests                            | `tests/`    |
 
 ---
 
