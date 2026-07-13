@@ -3,7 +3,7 @@
 **ID:** o02-quiz-builder-v1
 **Version:** V1
 **Date:** 2026-06-28
-**Status:** complete
+**Status:** ready
 **Interview Ref:** `.devflow/interview/i02-quiz-builder.md`
 
 ---
@@ -47,36 +47,36 @@ The Question Bank V1 established a reusable library of questions. The next produ
 
 ## 4. Constraints
 
-| Type       | Constraint                                                        |
-| ---------- | ----------------------------------------------------------------- |
-| Platform   | Local web application                                             |
-| Tech Stack | Python, Flask, SQLite, plain HTML/CSS/JavaScript                  |
-| Scope      | Question Bank module must remain unchanged                        |
-| Data       | Questions are referenced by ID; no duplication in storage         |
-| Validation | Quiz requires at least 3 questions to be saveable                 |
-| UI         | Follow approved application layout and navigation                 |
+| Type       | Constraint                                                |
+| ---------- | --------------------------------------------------------- |
+| Platform   | Local web application                                     |
+| Tech Stack | Python, Flask, SQLite, Vue 3 + TypeScript frontend (Vite) |
+| Scope      | Question Bank module must remain unchanged                |
+| Data       | Questions are referenced by ID; no duplication in storage |
+| Validation | Quiz requires at least 3 questions to be saveable         |
+| UI         | Follow approved application layout and navigation         |
 
 ---
 
 ## 5. Success Criteria
 
-- [x] User can create a quiz with a name and at least 3 selected questions
-- [x] User can browse and select questions from the Question Bank when building a quiz
-- [x] User can manually reorder selected questions within the quiz
-- [x] Saving a quiz with fewer than 3 questions is rejected with a clear error message
-- [x] User can preview the full quiz content (question text, options, correct answer) before saving
-- [x] User can view a list of all saved quizzes
-- [x] User can edit an existing quiz (rename, add/remove/reorder questions)
-- [x] User can delete a quiz
-- [x] All existing Question Bank behavior continues to work without regression
+- [ ] User can create a quiz with a name and at least 3 selected questions
+- [ ] User can browse and select questions from the Question Bank when building a quiz
+- [ ] User can manually reorder selected questions within the quiz
+- [ ] Saving a quiz with fewer than 3 questions is rejected with a clear error message
+- [ ] User can preview the full quiz content (question text, options, correct answer) before saving
+- [ ] User can view a list of all saved quizzes
+- [ ] User can edit an existing quiz (rename, add/remove/reorder questions)
+- [ ] User can delete a quiz
+- [ ] All existing Question Bank behavior continues to work without regression
 
 ---
 
 ## 6. Open Questions
 
-| #   | Question                                       | Owner | Status   |
-| --- | ---------------------------------------------- | ----- | -------- |
-| 1   | Storage model for quiz-question relationships  | AI    | resolved — join table with position column |
+| #   | Question                                      | Owner | Status                                     |
+| --- | --------------------------------------------- | ----- | ------------------------------------------ |
+| 1   | Storage model for quiz-question relationships | AI    | resolved — join table with position column |
 
 ---
 

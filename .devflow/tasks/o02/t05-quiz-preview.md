@@ -6,7 +6,7 @@
 **Depends On:** o02/t04-quiz-builder-page
 **Complexity:** S
 **Estimated Duration:** 45 min
-**Status:** complete
+**Status:** verified
 
 ---
 

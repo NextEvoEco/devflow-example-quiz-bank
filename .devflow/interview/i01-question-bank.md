@@ -7,6 +7,15 @@
 
 ---
 
+> **Branch note (`refactor/python-vue-sqlite`):** the frontend stack decision recorded
+> below (Q5/A5: plain HTML/CSS/JavaScript) is **superseded on this branch** by
+> `.devflow/intent/i04-vue-typescript-frontend.md` — the frontend is Vue 3 + TypeScript
+> built with Vite. The backend (Python, Q7/A7), persistence (SQLite, Q6/A6), and delivery
+> model (local web app started by a Python server, Q10/A10) remain as answered. The
+> answers below are kept unchanged as the historical record of the original interview.
+
+---
+
 ## 1. Goal Of This Interview
 
 > What uncertainty is this interview trying to remove?
@@ -62,7 +71,8 @@ This interview clarifies the first implementation boundary for the Quiz Bank exa
 - The first objective scope is limited to Question Bank.
 - The first objective should result in something independently executable and usable.
 - V1 to V3 should mainly expand by feature scope, while each version remains releaseable.
-- The front-end stack is plain HTML/CSS/JavaScript.
+- The front-end stack is Vue 3 + TypeScript, built with Vite (this branch supersedes the
+  originally confirmed plain HTML/CSS/JavaScript — see branch note above).
 - The data layer should use SQLite.
 - The backend stack is Python.
 - V1 scope is limited to Question Bank CRUD and search.

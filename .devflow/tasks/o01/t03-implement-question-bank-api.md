@@ -24,7 +24,7 @@ This task exposes the Question Bank backend through HTTP endpoints so the fronte
 
 * Add HTTP endpoints for list, search, create, update, and delete question flows.
 * Map validation and persistence errors to basic V1 error responses.
-* Return payloads that are sufficient for the plain JavaScript frontend to render the Question Bank page.
+* Return payloads that are sufficient for the Vue 3 + TypeScript frontend to render the Question Bank page.
 
 ### Out of Scope
 
@@ -51,20 +51,20 @@ This task exposes the Question Bank backend through HTTP endpoints so the fronte
 
 ## 4. Inputs
 
-| Artifact | Source |
-| --- | --- |
-| Objective definition | `.devflow/objective/o01-question-bank-v1.md` |
+| Artifact                     | Source                                          |
+| ---------------------------- | ----------------------------------------------- |
+| Objective definition         | `.devflow/objective/o01-question-bank-v1.md`    |
 | Storage and validation layer | `o01/t02-build-question-storage-and-validation` |
-| UI behavior expectations | `.devflow/context/ui-spec.md` |
+| UI behavior expectations     | `.devflow/context/ui-spec.md`                   |
 
 ---
 
 ## 5. Outputs
 
-| Artifact | Path |
-| --- | --- |
-| Question Bank HTTP endpoints | `backend/` |
-| API tests or integration tests | `tests/` |
+| Artifact                       | Path       |
+| ------------------------------ | ---------- |
+| Question Bank HTTP endpoints   | `backend/` |
+| API tests or integration tests | `tests/`   |
 
 ---
 
@@ -91,4 +91,4 @@ This task exposes the Question Bank backend through HTTP endpoints so the fronte
 
 ## 8. Notes
 
-Keep the API shape simple for plain JavaScript consumption.
+Keep the API shape simple for typed frontend consumption (TypeScript interfaces mirror the payloads).

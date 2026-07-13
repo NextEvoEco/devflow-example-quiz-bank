@@ -6,7 +6,7 @@
 **Depends On:** o02/t05-quiz-preview
 **Complexity:** M
 **Estimated Duration:** 1 hr
-**Status:** complete
+**Status:** verified
 
 ---
 

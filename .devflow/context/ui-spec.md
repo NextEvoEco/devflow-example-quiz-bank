@@ -26,6 +26,14 @@ For avoidance of doubt:
 - the active repository implementation may temporarily ship only part of this scope
 - context files may lead implementation, but should not fall behind the intended product direction
 
+> **Branch note (`refactor/python-vue-sqlite`):** this spec is framework-agnostic —
+> it defines views, behaviors, and the `currentPage` state contract, not the component
+> technology. On this branch it is implemented as a Vue 3 + TypeScript SPA (Vite): the
+> "single HTML page" is the SPA shell, each page id becomes a Vue view component, and
+> navigation remains in-page state switching exactly as specified. "No backend / in-memory
+> state" above describes the original UI prototype baseline; the shipped product uses the
+> Flask + SQLite backend defined in `architecture.md`.
+
 ---
 
 ## Navigation Structure

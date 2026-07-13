@@ -18,15 +18,19 @@ This file should reflect the live codebase first, while still noting where later
 
 Confirmed dependency categories:
 
-- Python runtime
+- Python runtime (backend)
+- Node.js runtime (frontend build toolchain only)
 - SQLite database support
 - browser runtime for the frontend
 
-Currently selected in the repository:
+Currently selected on this branch:
 
 - Flask (`flask>=3.0,<4.0`) for the local web server
-- pytest (`pytest>=8.0,<9.0`) for automated tests
+- pytest (`pytest>=8.0,<9.0`) for backend automated tests
 - Python standard-library `sqlite3` for database access
+- Vue 3 + TypeScript for the frontend
+- Vite for the frontend build/dev server
+- vitest for frontend unit tests
 
 ### External Services
 
@@ -48,6 +52,8 @@ Confirmed versions:
 - Flask 3.x
 - pytest 8.x
 - SQLite via Python standard library
+- Node.js 24+ / npm 11+
+- Vue 3.x, Vite 5+/6+, vitest (versions pinned in `package.json` when implemented)
 
 ### Upgrade Risks
 
@@ -55,7 +61,7 @@ Potential future risks to track as the product grows:
 
 - changing the Python web framework after the API shape is established
 - changing the SQLite access approach after persistence tests are written
-- adding a frontend framework later if the V1 code is tightly coupled to direct DOM manipulation
+- Vue/Vite major-version upgrades once components and build config are established
 
 At the moment, these are forward-looking cautions rather than active blockers.
 

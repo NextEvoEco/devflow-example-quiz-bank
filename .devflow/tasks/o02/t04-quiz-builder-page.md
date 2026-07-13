@@ -6,7 +6,7 @@
 **Depends On:** o02/t03-quiz-list-page
 **Complexity:** L
 **Estimated Duration:** 2 hr
-**Status:** complete
+**Status:** verified
 
 ---
 

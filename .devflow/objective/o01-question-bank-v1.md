@@ -28,7 +28,7 @@ The approved UI specification already defines a broader application that include
 This objective also establishes the initial technical foundation for later versions:
 
 - Python backend
-- plain HTML/CSS/JavaScript frontend
+- Vue 3 + TypeScript frontend, built with Vite (this branch; supersedes plain HTML/CSS/JavaScript)
 - SQLite data storage
 - local web app delivery model
 
@@ -59,7 +59,7 @@ This objective also establishes the initial technical foundation for later versi
 | Type       | Constraint                                                                                                             |
 | ---------- | ---------------------------------------------------------------------------------------------------------------------- |
 | Platform   | Local web application started by a Python server                                                                       |
-| Tech Stack | Python backend, plain HTML/CSS/JavaScript frontend, SQLite database                                                    |
+| Tech Stack | Python backend, Vue 3 + TypeScript frontend built with Vite, SQLite database                                           |
 | Trigger    | Manual local startup by the user                                                                                       |
 | Output     | A releaseable V1 Question Bank app that can be independently run and demonstrated                                      |
 | Other      | Use the approved UI design, remain intentionally lightweight, and preserve a foundation for future V2 and V3 expansion |
@@ -70,11 +70,11 @@ This objective also establishes the initial technical foundation for later versi
 
 > How will we know this objective is complete?
 
-* [x] The application can be started locally and used through a browser as a Question Bank web app.
-* [x] Users can list, search, add, edit, and delete questions, with data stored in SQLite.
-* [x] Question validation is enforced for question text, options A-D, and correct answer, and difficulty has a default value.
-* [x] The V1 implementation excludes Quiz Builder and Online Exam features while keeping the codebase extendable for later versions.
-* [x] Basic automated tests and basic error handling are present for the V1 scope.
+* [ ] The application can be started locally and used through a browser as a Question Bank web app.
+* [ ] Users can list, search, add, edit, and delete questions, with data stored in SQLite.
+* [ ] Question validation is enforced for question text, options A-D, and correct answer, and difficulty has a default value.
+* [ ] The V1 implementation excludes Quiz Builder and Online Exam features while keeping the codebase extendable for later versions.
+* [ ] Basic automated tests and basic error handling are present for the V1 scope.
 
 ---
 

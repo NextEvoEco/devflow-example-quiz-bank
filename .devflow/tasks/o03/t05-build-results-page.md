@@ -52,19 +52,19 @@ Render the exam results page using the submit response payload from t04. The pag
 
 ## 4. Inputs
 
-| Artifact                                  | Source                          |
-| ----------------------------------------- | ------------------------------- |
-| Submit response payload in frontend state | `frontend/js/app.js` (from t04) |
-| UI mockup (results layout)                | `.devflow/context/ui-spec.md`   |
-| Existing CSS variables and badge styles   | `frontend/css/app.css`          |
+| Artifact                                  | Source                                              |
+| ----------------------------------------- | --------------------------------------------------- |
+| Submit response payload in frontend state | shared frontend state in `frontend/src/` (from t04) |
+| UI mockup (results layout)                | `.devflow/context/ui-spec.md`                       |
+| Existing CSS variables and badge styles   | `frontend/src/` shared styles                       |
 
 ---
 
 ## 5. Outputs
 
-| Artifact                       | Path                                                                |
-| ------------------------------ | ------------------------------------------------------------------- |
-| Results view added to frontend | `frontend/index.html`, `frontend/js/app.js`, `frontend/css/app.css` |
+| Artifact                       | Path                                  |
+| ------------------------------ | ------------------------------------- |
+| Results view added to frontend | `frontend/src/` (Vue view/components) |
 
 ---
 

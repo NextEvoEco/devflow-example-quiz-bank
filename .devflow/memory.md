@@ -40,4 +40,9 @@ Add new entries at the top using this structure:
 
 ## Entries
 
-No durable execution memory has been recorded yet.
+## 2026-07-11 - Flask static_url_path conflict
+
+- Type: caveat
+- Scope: backend/app.py Flask static serving
+- Detail: Do not set Flask `static_url_path=""`. That registers `/<filename>` and can shadow `/api/*` routes (GET 404 via error handler, POST 405). Serve Vite assets via explicit `/assets/<path:filename>` instead.
+- Source: o01/t04 smoke test against running `py -m backend`

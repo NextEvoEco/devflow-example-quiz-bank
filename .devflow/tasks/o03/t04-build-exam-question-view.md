@@ -55,19 +55,19 @@ Implement the in-exam experience: create an attempt when the user starts an exam
 
 ## 4. Inputs
 
-| Artifact                                       | Source                               |
-| ---------------------------------------------- | ------------------------------------ |
-| Exam API (attempts, answers, submit)           | `backend/routes/exams.py` (from t02) |
-| Available Exams page and `currentQuizId` state | `frontend/js/app.js` (from t03)      |
-| UI mockup (in-exam layout)                     | `.devflow/context/ui-spec.md`        |
+| Artifact                                       | Source                                              |
+| ---------------------------------------------- | --------------------------------------------------- |
+| Exam API (attempts, answers, submit)           | `backend/routes/exams.py` (from t02)                |
+| Available Exams page and `currentQuizId` state | shared frontend state in `frontend/src/` (from t03) |
+| UI mockup (in-exam layout)                     | `.devflow/context/ui-spec.md`                       |
 
 ---
 
 ## 5. Outputs
 
-| Artifact                       | Path                                                                |
-| ------------------------------ | ------------------------------------------------------------------- |
-| In-exam view added to frontend | `frontend/index.html`, `frontend/js/app.js`, `frontend/css/app.css` |
+| Artifact                       | Path                                  |
+| ------------------------------ | ------------------------------------- |
+| In-exam view added to frontend | `frontend/src/` (Vue view/components) |
 
 ---
 

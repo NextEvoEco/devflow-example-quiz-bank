@@ -46,7 +46,8 @@ These conventions are confirmed from the DevFlow workflow, interview, objective,
 ### Conventions That Must Not Be Broken
 
 - backend must be Python
-- frontend must be plain HTML/CSS/JavaScript for V1
+- frontend must be Vue 3 + TypeScript built with Vite (this branch; supersedes the
+  original plain HTML/CSS/JavaScript convention — see `.devflow/intent/i04-vue-typescript-frontend.md`)
 - persistence must use SQLite
 - V1 scope must remain limited to Question Bank CRUD and search
 - question text, options A-D, and correct answer must be validated

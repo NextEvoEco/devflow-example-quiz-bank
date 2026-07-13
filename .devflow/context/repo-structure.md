@@ -10,22 +10,21 @@ Fill this file when the repository contains meaningful code or supporting direct
 
 ## Current Status
 
-The repository includes a fully runnable Quiz Bank implementation covering all three planned versions: Question Bank (V1), Quiz Builder (V2), and Online Exam (V3).
+**This branch (`refactor/python-vue-sqlite`) contains DevFlow artifacts and docs only —
+no application code yet.** The layout below is the target structure the implementation
+pass must produce. Do not assume `backend/`, `frontend/`, or `tests/` exist until then.
 
-### Top-Level Directories
+### Top-Level Directories (target)
 
 - `.devflow/` : DevFlow workflow state, context, templates, roles, skills, and task artifacts
 - `backend/` : Python server, API entrypoints, configuration, and database bootstrap
-- `fixtures/` : manual demo or test content files, such as question-bank seed material prepared for human entry
-- `frontend/` : HTML/CSS/JavaScript client assets
-- `tests/` : automated tests for the local application
-- `docs/` : human-readable supporting documentation such as getting-started, app startup, and verification guidance
+- `frontend/` : Vue 3 + TypeScript application (Vite project: `src/`, `package.json`, `vite.config.ts`; `dist/` build output is git-ignored)
+- `tests/` : automated backend tests (pytest); frontend tests (vitest) live under `frontend/`
+- `docs/` : human-readable supporting documentation such as getting-started and verification guidance
 - `data/` : generated at runtime; stores the local SQLite database file
 - root markdown files such as `README.md`, `AGENTS.md`, and `CLAUDE.md` : repository bootstrap and usage guidance
 
-### Main Application Areas
-
-Current meaningful areas:
+### Main Application Areas (target)
 
 - `.devflow/context/` : project context documents
 - `.devflow/intent/` : original request artifacts
@@ -34,11 +33,9 @@ Current meaningful areas:
 - `.devflow/tasks/` : executable task definitions
 - `.devflow/evidence/` : execution and verification records
 - `backend/` : Flask app factory, startup entrypoint, config, SQLite bootstrap, and route modules under `backend/routes/`
-- `backend/exam_repository.py` : exam attempt and answer repository
-- `fixtures/` : reusable question-bank content prepared for manual input or demos
-- `frontend/` : Question Bank, Quiz Builder, and Online Exam pages and JavaScript modules
-- `tests/` : bootstrap, API, repository, page module, and release verification tests for V1–V3
-- `docs/` : startup and verification instructions for all three shipped versions (V1, V2, V3)
+- `frontend/src/` : Vue views/components (one view per `ui-spec.md` page id), shared state, TypeScript API client, shared styles
+- `tests/` : backend bootstrap, API, repository, and release verification tests for V1–V3
+- `docs/` : startup and verification instructions for the shipped versions
 
 ### Generated Or Derived Files
 
@@ -47,6 +44,8 @@ Known generated or runtime-derived items:
 - `data/quiz_bank.db` : local SQLite database file
 - Python cache directories such as `__pycache__/`
 - `.pytest_cache/` when tests are run
+- `frontend/node_modules/` : npm dependencies (git-ignored)
+- `frontend/dist/` : Vite build output served by Flask (git-ignored)
 
 ### Safe Edit Areas
 
@@ -76,5 +75,6 @@ Typical safe edit areas:
 When navigating this repository:
 
 - `ui-spec.md` may describe target product scope ahead of implementation
-- `backend/`, `frontend/`, and `tests/` show the current shipped code
+- `backend/`, `frontend/`, and `tests/` show the current shipped code once the
+  implementation pass has run — on this branch they do not exist yet
 - `status.md` tells you which slice is currently active for execution

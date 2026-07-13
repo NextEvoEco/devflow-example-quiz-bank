@@ -25,13 +25,16 @@ The target product architecture is confirmed at a high level by `.devflow/contex
 
 ### Current Implementation Status
 
-The current repository implements V1 (Question Bank), V2 (Quiz Builder), and V3 (Online Exam).
+**This branch (`refactor/python-vue-sqlite`) contains no application code yet.**
+The DevFlow artifacts have been aligned to the target stack; the implementation pass
+(driven by `context/` and `tasks/`) follows. Do not assume `backend/`, `frontend/`, or
+`tests/` exist until that pass runs.
 
-Currently implemented:
+Target scope to deliver (same product as the original build, new frontend stack):
 
 - local web application
 - Python backend with Flask
-- plain HTML/CSS/JavaScript frontend
+- Vue 3 + TypeScript frontend, built with Vite
 - SQLite persistence (questions, quizzes, quiz_questions, exam_attempts, exam_answers)
 - Question Bank list, search, add, edit, and delete flows
 - Quiz Builder create, edit, preview, and delete flows
@@ -43,17 +46,17 @@ The target product is a small local web application with a browser-based fronten
 
 The final UI and product behavior are described in `.devflow/context/ui-spec.md`.
 
-The backend serves static frontend assets, exposes Question Bank API endpoints, and persists question data in SQLite. Later product areas may reuse the same local-app pattern as scope expands.
+The backend serves the built Vue frontend assets (Vite `dist/` output), exposes Question Bank API endpoints, and persists question data in SQLite. Later product areas may reuse the same local-app pattern as scope expands.
 
 Each shipped version should remain independently runnable and usable on a local machine.
 
-## Current Implementation Overview
+## Target Implementation Overview
 
-The current codebase delivers all three planned slices: Question Bank (V1), Quiz Builder (V2), and Online Exam (V3).
+The implementation pass on this branch must deliver all three slices: Question Bank (V1), Quiz Builder (V2), and Online Exam (V3).
 
-Today:
+When implemented:
 
-- the frontend renders Question Bank, Quiz Builder, and Online Exam pages from static assets in `frontend/`
+- the frontend renders Question Bank, Quiz Builder, and Online Exam views as a Vue 3 + TypeScript SPA, built by Vite into `frontend/dist/` and served by Flask
 - the backend exposes `/api/questions`, `/api/quizzes`, and `/api/exams` route groups
 - question persistence is handled in SQLite through `QuestionRepository`
 - quiz persistence is handled through `QuizRepository`
@@ -64,14 +67,15 @@ Today:
 
 ### Frontend
 
-- plain HTML page structure
-- CSS styling for the current Question Bank implementation
-- plain JavaScript state and event handling
-- browser-side rendering for implemented V1 flows
+- Vue 3 single-file components (Composition API) written in TypeScript
+- one view component per page id in `ui-spec.md` (questions, quizList, quizCreate, examList, examTaking, examResults) sharing a persistent layout shell (sidebar + top bar)
+- in-page view switching per `ui-spec.md` (single `currentPage` state; no URL routing required)
+- shared reactive state for cross-view data (e.g. current exam attempt)
+- Vite dev server for development; `npm run build` emits `frontend/dist/` for Flask to serve
 
 Target-forward note:
 
-- `ui-spec.md` may define additional views and interactions that are not yet present in the live code
+- `ui-spec.md` remains the product behavior spec; it describes views and interactions, not the component framework
 
 ### Backend
 

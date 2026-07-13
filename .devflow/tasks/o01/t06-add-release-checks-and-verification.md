@@ -52,21 +52,21 @@ This task brings Question Bank V1 to a releaseable baseline by tightening automa
 
 ## 4. Inputs
 
-| Artifact | Source |
-| --- | --- |
-| Objective definition | `.devflow/objective/o01-question-bank-v1.md` |
-| Completed Question Bank implementation | `o01/t01` through `o01/t05` |
-| Existing tests and startup flow | repository codebase |
+| Artifact                               | Source                                       |
+| -------------------------------------- | -------------------------------------------- |
+| Objective definition                   | `.devflow/objective/o01-question-bank-v1.md` |
+| Completed Question Bank implementation | `o01/t01` through `o01/t05`                  |
+| Existing tests and startup flow        | repository codebase                          |
 
 ---
 
 ## 5. Outputs
 
-| Artifact | Path |
-| --- | --- |
-| Final V1 automated tests or verification updates | `tests/` |
-| Local startup / test instructions updates | `README.md` or `docs/` as needed |
-| Release-readiness fixes within V1 scope | repository codebase |
+| Artifact                                         | Path                             |
+| ------------------------------------------------ | -------------------------------- |
+| Final V1 automated tests or verification updates | `tests/`                         |
+| Local startup / test instructions updates        | `README.md` or `docs/` as needed |
+| Release-readiness fixes within V1 scope          | repository codebase              |
 
 ---
 

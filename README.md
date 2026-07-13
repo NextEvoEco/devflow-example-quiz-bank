@@ -68,8 +68,9 @@ Each version introduces additional DevFlow artifacts while keeping the applicati
 docs/
     Supporting documentation
 
-src/
-    Application source code
+backend/            (implementation pass) Python Flask server: API + SQLite
+frontend/           (implementation pass) Vue 3 + TypeScript app built with Vite
+tests/              (implementation pass) backend pytest suite
 ```
 
 ---
@@ -125,14 +126,27 @@ This repository focuses on demonstrating how DevFlow is applied in practice.
 
 # Status
 
-Current Version
+**Branch `refactor/python-vue-sqlite`** — tech-stack refactor branch
+(see `docs/tech-stack.md` and `.devflow/intent/i04-vue-typescript-frontend.md`).
 
-* V1 — Question Bank (In Progress)
+Target stack: Python + Flask backend, **Vue 3 + TypeScript frontend (Vite)**, SQLite.
 
-Planned Versions
+## Run locally
 
-* V2 — Quiz Builder
-* V3 — Online Exam
+```bash
+pip install -r requirements.txt
+cd frontend && npm install && npm run build && cd ..
+py -m backend
+```
+
+Open http://127.0.0.1:5000
+
+## Tests
+
+```bash
+py -m pytest tests -v
+cd frontend && npm test
+```
 
 ---
 

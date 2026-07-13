@@ -23,7 +23,7 @@ This task establishes the runnable project foundation for Quiz Bank V1 so later 
 ### In Scope
 
 * Create the initial Python application structure for a local web app.
-* Choose and wire a lightweight Python server stack suitable for serving API endpoints and static frontend assets.
+* Choose and wire a lightweight Python server stack suitable for serving API endpoints and the built Vue frontend assets (Vite `dist/` output).
 * Create the base repository code layout for backend, frontend, and tests.
 * Initialize SQLite database creation/bootstrap behavior for first run.
 * Provide a minimal runnable app shell so the application can start locally.
@@ -53,23 +53,23 @@ This task establishes the runnable project foundation for Quiz Bank V1 so later 
 
 ## 4. Inputs
 
-| Artifact | Source |
-| --- | --- |
-| Objective definition | `.devflow/objective/o01-question-bank-v1.md` |
-| UI context | `.devflow/context/ui-spec.md` |
-| Repository structure guidance | `.devflow/context/repo-structure.md` |
+| Artifact                      | Source                                       |
+| ----------------------------- | -------------------------------------------- |
+| Objective definition          | `.devflow/objective/o01-question-bank-v1.md` |
+| UI context                    | `.devflow/context/ui-spec.md`                |
+| Repository structure guidance | `.devflow/context/repo-structure.md`         |
 
 ---
 
 ## 5. Outputs
 
-| Artifact | Path |
-| --- | --- |
-| Python app bootstrap and server entrypoint | `backend/` |
-| Frontend static shell files | `frontend/` |
-| SQLite bootstrap or initialization layer | `backend/` |
-| Basic startup instructions update | `README.md` or `docs/` as needed |
-| Test directory bootstrap | `tests/` |
+| Artifact                                   | Path                             |
+| ------------------------------------------ | -------------------------------- |
+| Python app bootstrap and server entrypoint | `backend/`                       |
+| Frontend static shell files                | `frontend/`                      |
+| SQLite bootstrap or initialization layer   | `backend/`                       |
+| Basic startup instructions update          | `README.md` or `docs/` as needed |
+| Test directory bootstrap                   | `tests/`                         |
 
 ---
 

@@ -9,16 +9,13 @@ Project-specific information should be written in `.devflow/context/`, `.devflow
 
 ## Project Description
 
-Fill this section when a real project starts.
-Leave it blank in the starter repository.
+**Project Name:** Quiz Bank (DevFlow example project)
 
-**Project Name:** {fill when project starts}
+**Project Type:** Local web application
 
-**Project Type:** {fill when project starts}
+**Project Description:** A lightweight Quiz Bank application used to demonstrate the DevFlow workflow. On this branch (`refactor/python-vue-sqlite`) the stack is a Python/Flask backend, a Vue 3 + TypeScript frontend built with Vite, and SQLite persistence. Scope spans V1 Question Bank CRUD, V2 Quiz Builder, and V3 Online Exam. See `.devflow/intent/i04-vue-typescript-frontend.md` and `docs/tech-stack.md`.
 
-**Project Description:** {fill when project starts}
-
-**Target Users:** {fill when project starts}
+**Target Users:** Educators and learners using a local demo application
 
 ---
 

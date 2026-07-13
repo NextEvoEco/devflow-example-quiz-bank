@@ -51,20 +51,20 @@ Add the Online Exam section to the application: a sidebar navigation entry and a
 
 ## 4. Inputs
 
-| Artifact                               | Source                                      |
-| -------------------------------------- | ------------------------------------------- |
-| Existing sidebar and nav pattern       | `frontend/index.html`, `frontend/js/app.js` |
-| Existing CSS variables and card styles | `frontend/css/app.css`                      |
-| UI mockup (Available Exams layout)     | `.devflow/context/ui-spec.md`               |
-| Existing quiz list endpoint            | `GET /api/quizzes`                          |
+| Artifact                               | Source                                         |
+| -------------------------------------- | ---------------------------------------------- |
+| Existing sidebar and nav pattern       | `frontend/src/` (Vue app shell and navigation) |
+| Existing CSS variables and card styles | `frontend/src/` shared styles / design tokens  |
+| UI mockup (Available Exams layout)     | `.devflow/context/ui-spec.md`                  |
+| Existing quiz list endpoint            | `GET /api/quizzes`                             |
 
 ---
 
 ## 5. Outputs
 
-| Artifact                                                       | Path                                                                |
-| -------------------------------------------------------------- | ------------------------------------------------------------------- |
-| Updated frontend with Online Exam nav and Available Exams view | `frontend/index.html`, `frontend/js/app.js`, `frontend/css/app.css` |
+| Artifact                                                       | Path                                                      |
+| -------------------------------------------------------------- | --------------------------------------------------------- |
+| Updated frontend with Online Exam nav and Available Exams view | `frontend/src/` (Vue views/components, navigation wiring) |
 
 ---
 

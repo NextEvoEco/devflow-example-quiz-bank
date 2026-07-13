@@ -52,21 +52,21 @@ This task creates the Question Bank data model, SQLite persistence layer, and va
 
 ## 4. Inputs
 
-| Artifact | Source |
-| --- | --- |
-| Objective definition | `.devflow/objective/o01-question-bank-v1.md` |
-| Bootstrap app structure | `o01/t01-bootstrap-local-web-app` |
-| Question data model guidance | `.devflow/context/ui-spec.md` |
+| Artifact                     | Source                                       |
+| ---------------------------- | -------------------------------------------- |
+| Objective definition         | `.devflow/objective/o01-question-bank-v1.md` |
+| Bootstrap app structure      | `o01/t01-bootstrap-local-web-app`            |
+| Question data model guidance | `.devflow/context/ui-spec.md`                |
 
 ---
 
 ## 5. Outputs
 
-| Artifact | Path |
-| --- | --- |
-| Question model, storage, and validation code | `backend/` |
-| SQLite schema or migration bootstrap updates | `backend/` |
-| Automated tests for validation/storage behavior | `tests/` |
+| Artifact                                        | Path       |
+| ----------------------------------------------- | ---------- |
+| Question model, storage, and validation code    | `backend/` |
+| SQLite schema or migration bootstrap updates    | `backend/` |
+| Automated tests for validation/storage behavior | `tests/`   |
 
 ---
 

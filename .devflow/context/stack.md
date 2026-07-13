@@ -14,20 +14,20 @@ Do not guess. Add only confirmed stack decisions.
 ### Languages
 
 - Python for backend implementation
-- HTML for page structure
-- CSS for styling
-- JavaScript for frontend interaction
+- TypeScript for frontend implementation (Vue single-file components)
+- HTML/CSS inside Vue SFC templates and shared styles
 
 ### Frameworks And Libraries
 
-Confirmed at this stage:
+Confirmed on this branch (`refactor/python-vue-sqlite`):
 
-- no frontend framework; use plain HTML/CSS/JavaScript
+- Vue 3 (Composition API) + TypeScript for the frontend, built with Vite
+- vitest for frontend unit tests
 
-Confirmed:
+Confirmed (unchanged from the original stack):
 
 - Flask for the Python web server and API layer
-- pytest for automated tests
+- pytest for backend automated tests
 - Python standard-library `sqlite3` for database access
 
 ### Runtime And Tooling
@@ -41,9 +41,11 @@ Confirmed:
 Confirmed:
 
 - Python 3.13+ local runtime
-- `pip` with `requirements.txt` for dependency management
-- `py -m pytest` for automated tests
-- Flask serves static frontend assets from `frontend/`
+- Node.js 24+ / npm for the frontend toolchain
+- `pip` with `requirements.txt` for backend dependency management
+- `package.json` for frontend dependency management
+- `py -m pytest` for backend tests; `npm test` (vitest) for frontend tests
+- `npm run build` produces `frontend/dist/`; Flask serves the built assets
 
 ### Storage And Infrastructure
 
@@ -56,7 +58,10 @@ No cloud hosting, object storage, queue, cache, or external infrastructure is in
 ### Stack Constraints
 
 - backend must be Python
-- frontend must remain plain HTML/CSS/JavaScript for V1
+- frontend is Vue 3 + TypeScript built with Vite (this branch supersedes the original
+  plain HTML/CSS/JavaScript constraint — see `.devflow/intent/i04-vue-typescript-frontend.md`)
 - persistence must use SQLite
-- V1 should be runnable locally without external infrastructure
+- the app must remain runnable locally without external infrastructure
+  (Node/npm is a build-time toolchain, not a runtime service)
+- the behavior contract is preserved: same API routes and JSON shapes, same port 5000
 - stack choices should preserve a clean path for later V2/V3 feature expansion
