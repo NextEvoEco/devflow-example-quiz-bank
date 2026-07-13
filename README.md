@@ -109,6 +109,40 @@ If you are new to DevFlow and want to apply it to your own project, see [docs/ge
 
 ---
 
+# Experiments & Demonstrations
+
+## Refactor Stack Experiment
+
+This repository contains a **multi-stack refactor experiment** that demonstrates DevFlow's core principle: **a single artifact set can drive multiple implementation stacks**.
+
+### How It Works
+
+1. **Shared Specification** (`refactor/base`): All stacks start from identical DevFlow artifacts
+   - Intent documents
+   - Interview clarifications
+   - Objectives
+   - Task definitions
+   - Context files (architecture, conventions, dependencies)
+
+2. **Stack Implementations**: Each stack rebuilds the same application independently
+   - `refactor/python-vue-sqlite`: Python/Flask backend, Vue 3 frontend, SQLite database
+   - `refactor/java-react-postgre`: Java/Spring Boot backend, React frontend, PostgreSQL database
+
+3. **Cross-Stack Analysis** (`refactor/compare`):
+   - [docs/refactor-index.md](docs/refactor-index.md) — reading guide and quick reference
+   - [docs/refactor-comparison.md](docs/refactor-comparison.md) — full quantitative and qualitative analysis
+
+### Key Findings
+
+- **Both stacks completed 100% of the specification** (87 acceptance criteria, 3 full versions)
+- **Code volume is comparable** (~6.5k–8.1k LOC) despite language/framework differences
+- **Architecture diverges by idiom** (lightweight/convention vs. explicit/layered)
+- **Database choice has real trade-offs** (zero-setup SQLite vs. production-grade PostgreSQL)
+
+See [docs/refactor-index.md](docs/refactor-index.md) to start exploring.
+
+---
+
 # Relationship to DevFlow
 
 This repository is a reference implementation.
@@ -119,20 +153,45 @@ The DevFlow framework itself is maintained separately.
 
 https://github.com/NextEvoEco/devflow
 
-This repository focuses on demonstrating how DevFlow is applied in practice.
+This repository focuses on demonstrating how DevFlow is applied in practice through:
+
+- **Progressive development**: Show how intent → interview → objectives → tasks → evidence flows
+- **Multi-stack validation**: Prove the same spec works across different technology stacks
+- **Cross-session resilience**: All project state lives in the repository, not in conversations
 
 ---
 
-# Status
+# Status & Branches
 
-Current Version
+## Main Development Branch
 
-* V1 — Question Bank (In Progress)
+This repository uses a multi-branch strategy to demonstrate DevFlow across different technology stacks.
 
-Planned Versions
+### Active Branches
 
-* V2 — Quiz Builder
-* V3 — Online Exam
+| Branch | Stack | Status | Purpose |
+|--------|-------|--------|---------|
+| `refactor/base` | — | ✅ Complete | Shared baseline (DevFlow artifacts only) |
+| `refactor/python-vue-sqlite` | Python + Flask / Vue 3 + TypeScript / SQLite | ✅ Complete | First stack implementation |
+| `refactor/java-react-postgre` | Java 21 + Spring Boot 3 / React 18 + TypeScript / PostgreSQL + Flyway | ✅ Complete | Second stack implementation |
+| `refactor/compare` | — | ✅ Complete | Cross-stack analysis hub |
+
+### Completed Versions (All Stacks)
+
+* **V1 — Question Bank** ✅ (all stacks)
+* **V2 — Quiz Builder** ✅ (all stacks)
+* **V3 — Online Exam** ✅ (all stacks)
+
+All versions fully implemented and verified across both technology stacks.
+
+### Refactor Experiment
+
+The repository demonstrates a **multi-stack refactor experiment** where the same DevFlow specification drives implementations in different technology stacks:
+
+- **Python/Vue/SQLite**: Lightweight, convention-over-configuration approach
+- **Java/React/PostgreSQL**: Production-grade, explicit-architecture approach
+
+See [docs/refactor-index.md](docs/refactor-index.md) for a reading guide and quick links.
 
 ---
 
